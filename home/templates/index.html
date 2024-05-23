@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% block title %}
+Project
+{% endblock %}
+{% block content %}
+{% load static %}
+<nav class="backdrop-blur-sm flex justify-end px-5 max-w-full p-2 relative z-50">
+   <div>
+      <div class="block relative rounded-full usermCard" id="menu-button">
+         <img class="w-11 h-12 rounded-full object-top" src="{% static 'images/dp.png' %}" width="80%" alt="" srcset="" />
+      </div>
+      <div class="absolute right-0 mt-2 w-48 bg-blue-50 rounded-tl-2xl rounded-bl-2xl rounded-br-2xl mx-12 shadow-2xl z-50 hidden" id="menu-items">
+         <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded-tl-2xl">Profile</a>
+         <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Settings</a>
+         <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">About</a>
+         <hr class="m-0 p-0" />
+         <div class="flex py-2 justify-evenly">
+            <span>
+               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 mt-1" viewBox="0 0 640 512">
+                  <path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z" />
+               </svg>
+            </span>
+            <div class="w-14 place-items-center rounded-md bg-blue-600">
+               <a href="#" class="text-sm font-bold text-white p-1">Linkdin</a>
+            </div>
+            <div class="w-14 place-items-center rounded-md bg-gray-800">
+               <a href="#" class="text-sm font-bold text-white p-1">GitHub</a>
+            </div>
+         </div>
+      </div>
+   </div>
+</nav>
+<div class="container relative shadow-xl usermCaard rounded-2xl bg-neutral-100 mx-auto my-auto z-5">
+  <div class="absolute container rounded-2xl px-6 py-5 lg:px-12 w-full" id="innerContainer">
+    <div class="">
+      <div class="lg:w-1/5 lg:flex lg:justify-evenly">
+        <span class="font-semibold text-2xl text-gray-950 md:block">Aslam Miya</span>
+        <span class="font-semibold text-lg text-gray-700 lg:mt-1 md:block">@aslammiya</span>
+      </div>
+    </div>
+    <hr class="my-3">
+    <div class="outline outline-1 outline-gray-200 rounded-2xl py-2 px-3 md:grid md:grid-cols-12 gap-3">
+      <div class="col-span-11">
+        <span class="font-medium font-serif text-xl tracking-wider underline block">Topic</span>
+        <p class="font-medium font-sans text-lg text-gray-900 tracking-wide my-1 block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas alias itaque veritatis quidem voluptatem quis officiis nostrum omnis ad adipisci provident, iste eius, reiciendis at?</p>        
+      </div>
+      <div class="flex justify-center items-center">
+        <button type="button" class="hidden md:inline-block text-center text-white p-3 shadow-sm hover:shadow-lg shadow-blue-500 hover:shadow-blue-500  rounded-full text-4xl bg-blue-600 hover:bg-blue-800"><i class="fa-solid fa-arrows-rotate"></i></button>
+        <button type="button" class="rounded-2xl text-white py-1 justify-center w-full h-fit flex md:hidden bg-blue-800 ">
+          <span class="font-mono font-medium text-xl">Change</span>
+          <i class="fa-solid fa-arrows-rotate mt-1 mx-2 text-md"></i>
+        </button>
+      </div>
+    </div>
+    <div class="">
+      <div class="w-full relative connectContainer my-3 border-2 rounded-xl border-solid border-gray-200 flex justify-end pt-3 pr-3 pl-3">
+
+         <div id="chatWindow" class="w-full lg:w-1/3 md:w-1/2 usermCard shadow-black h-full bg-gray-200 border-2 border-solid rounded-xl flex flex-col max-h-screen hidden">
+            <div class="w-full closeChat h-6 bg-slate-400 rounded-t-xl hover:bg-red-400 text-white font-extrabold flex justify-end px-2 pt-1">
+            </div>
+            <div class="flex-grow p-4 overflow-y-auto space-y-4">
+                <!-- Message from others -->
+                <div class="flex flex-col items-start">
+                    <div class="text-sm font-bold text-gray-700">Aslam Miya</div>
+                    <div class="bg-blue-200 text-black p-2 rounded-lg max-w-xs">Hello! How are you?</div>
+                </div>
+                <!-- My message -->
+                <div class="flex flex-col items-end">
+                    <div class="bg-green-200 text-black p-2 rounded-lg max-w-xs">I'm good, thank you! How about you?</div>
+                </div>
+                <!-- More messages can be added similarly -->
+            </div>
+            <div class="flex items-center p-1 border-t-2 border-gray-300" id="messageInput">
+                <input type="text" class="flex-grow rounded-lg" placeholder="Type your message...">
+                <button class="px-4 py-2 ml-1 text-white bg-blue-500 rounded-3xl hover:bg-blue-600">
+                    <i class="fa-solid fa-angles-right"></i>
+                </button>
+            </div>
+        </div>
+        <div class="z-6 w-full h-full flex gap-4 px-3">
+            <div>
+               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
+            </div>
+            <div>
+               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
+            </div>
+            <div>
+               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
+            </div>
+            <div>
+               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
+            </div>
+            <div>
+               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
+            </div>
+            <div>
+               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
+            </div>
+            <div>
+               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
+            </div>
+            <div>
+               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
+            </div>
+            <div>
+               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
+            </div>
+            <div>
+               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
+            </div>
+            <div>
+               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
+            </div>
+            
+        </div>
+         <button id="chatToggle" class="absolute bottom-0 z-9 border-2 px-2 p rounded-t-lg text-md bg-gray-200 font-bold text-gray-800"><i class="fa-solid fa-angles-right fa-rotate-270 px-1"></i>Messages</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="drawarToggle" class="relative w-4 lg:w-5  h-full rounded-l-lg hover:outline-blue-400 hover:bg-slate-100 outline outline-1 outline-gray-300 flex justify-center items-center">
+    <span class="text-center font-mono font-semibold"><i class="fa-solid fa-angles-right"></i></span>
+  </div>
+   <div id="friendsDrawar" class="outline outline-1 outline-gray-300 absolute w-full max-w-sm md:max-w-md inset-0 bg-slate-100 rounded-2xl my-1 mx-0.5 hidden">
+      <div class="w-full h-7 bg-slate-400 rounded-t-2xl hover:bg-red-400 text-white font-extrabold flex justify-end px-2 pt-1 closeDrawar">
+         <button class="closeDrawar">X</button>
+      </div>
+      <div class="px-5 py-4">
+         <form action="" class="flex flex-col md:flex-row justify-between gap-2">
+            <input type="search" required class="flex-1 rounded-md p-2 border border-gray-300" placeholder="Search" name="socialSearch" id="socialSearch" />
+            <button type="submit" class="hover:bg-bluextend: {},e-600 hover:border-blue-600 border-solid border-2 p-2 rounded-md font-mono">Search</button>
+         </form>
+         <div class="mt-7 rounded-2xl" id="user-list">
+            <div class="my-4">
+               <div class="w-full px-3 py-2 shadow-md rounded-2xl userCard flex justify-between items-center">
+                  <div class="block relative" id="menu-button">
+                     <img class="w-11 h-12 rounded-full object-top" src="{% static 'images/dp.png' %}" width="80%"/>
+                  </div>
+                  <div class="flex flex-col ml-3">
+                     <span class="block font-medium">Aslam Miya</span>
+                     <span class="block text-gray-500">@aslammiya</span>
+                  </div>
+                  <div class="w-2 h-2 bg-green-600 rounded-full"></div>
+                  <button type="button" class="hover:bg-zinc-900 hover:border-zinc-900 border-solid border-2 px-2 rounded-full hover:text-white">
+                  <i class="fa-solid fa-user-plus"></i>
+                  </button>
+               </div>
+            </div>
+         </div>
+        </div>
+   </div>
+   
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+html{
+    background: rgb(212, 214, 243);
+}
+.usermCard{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 4px;
+}
+
+#user-list{
+    height: calc(100svh - 28svh); 
+    overflow: auto;
+}
+#friendsDrawar{
+    height: calc(100svh - 11svh); 
+}
+.container{
+    height: calc(100svh - 10svh); 
+}
+.connectContainer {
+    height: calc(100svh - 43svh);
+}
+@media (max-width: 768px) {
+    .connectContainer {
+        height: calc(100svh - 57svh);
+    }
+}
