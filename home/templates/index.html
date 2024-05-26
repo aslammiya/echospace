@@ -30,7 +30,7 @@ Project
       </div>
    </div>
 </nav>
-<div class="container relative shadow-xl usermCaard rounded-2xl bg-neutral-100 mx-auto my-auto z-5">
+<div class="container relative shadow-xl usermCaard rounded-2xl bg-neutral-100 mx-auto my-auto z-7">
   <div class="absolute container rounded-2xl px-6 py-5 lg:px-12 w-full" id="innerContainer">
     <div class="">
       <div class="lg:w-1/5 lg:flex lg:justify-evenly">
@@ -55,10 +55,10 @@ Project
     <div class="">
       <div class="w-full relative connectContainer my-3 border-2 rounded-xl border-solid border-gray-200 flex justify-end pt-3 pr-3 pl-3">
 
-         <div id="chatWindow" class="w-full lg:w-1/3 md:w-1/2 usermCard shadow-black h-full bg-gray-200 border-2 border-solid rounded-xl flex flex-col max-h-screen hidden">
+         <div id="chatWindow" class="hidden relative w-full mdb-10 z-30 lg:w-1/3 md:w-1/2 usermCard shadow-black h-full bg-gray-200 border-2 border-solid rounded-xl flex flex-col max-h-screen">
             <div class="w-full closeChat h-6 bg-slate-400 rounded-t-xl hover:bg-red-400 text-white font-extrabold flex justify-end px-2 pt-1">
             </div>
-            <div class="flex-grow p-4 overflow-y-auto space-y-4">
+            <div class="flex-grow p-4 overflow-y-auto space-y-4 hide-scrollbar">
                 <!-- Message from others -->
                 <div class="flex flex-col items-start">
                     <div class="text-sm font-bold text-gray-700">Aslam Miya</div>
@@ -77,43 +77,24 @@ Project
                 </button>
             </div>
         </div>
-        <div class="z-6 w-full h-full flex gap-4 px-3">
-            <div>
-               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
+        <div class="w-full h-full flex gap-4 px-5 py-3 z-8 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-auto hide-scrollbar grid lg:grid-cols-10 md:grid-cols-7 sm:grid-cols-5 grid-cols-3" id="loby">
+
+         <div name="userIcon" class="flex flex-wrap h-fit relative justify-center">
+            <img class="border-4 border-blue-500 rounded-full w-20 h-20 p-0.5 object-cover sm:w-20 sm:h-20 md:w-24 md:h-24" src="{% static 'images/dp.png' %}" alt="Profile Image">
+            <div class="absolute rounded-2xl px-2 h-fit w-fit bg-black flex justify-center items-center opacity-25 self-end mb-2 hidden" id="userMenuBtn">
+               <i class="fas fa-ellipsis-h text-2xl text-white"></i>
             </div>
-            <div>
-               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
-            </div>
-            <div>
-               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
-            </div>
-            <div>
-               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
-            </div>
-            <div>
-               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
-            </div>
-            <div>
-               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
-            </div>
-            <div>
-               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
-            </div>
-            <div>
-               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
-            </div>
-            <div>
-               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
-            </div>
-            <div>
-               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
-            </div>
-            <div>
-               <img class="border-4 border-blue-500 rounded-full w-24 h-24 p-0.5 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
-            </div>
-            
-        </div>
-         <button id="chatToggle" class="absolute bottom-0 z-9 border-2 px-2 p rounded-t-lg text-md bg-gray-200 font-bold text-gray-800"><i class="fa-solid fa-angles-right fa-rotate-270 px-1"></i>Messages</button>
+            <div name="userMenu" class=" absolute left-12 bottom-6 mt-2 w-fit opacity-90 bg-white rounded-xl shadow-lg z-10 hidden">
+               <ul class="py-1">
+                   <li class="px-2 py-1 hover:bg-gray-200 cursor-pointer bg-white rounded-lg">Mute</li>
+                   <li class="px-2 py-1 hover:bg-gray-200 cursor-pointer bg-white rounded-lg">Kickout</li>
+               </ul>
+           </div>
+         </div>
+         
+         
+         </div>
+         <button id="chatToggle" class=" absolute bottom-0 z-9 border-2 px-2 p rounded-t-lg text-md bg-gray-200 font-bold text-gray-800"><i class="fa-solid fa-angles-right fa-rotate-270 px-1"></i>Messages</button>
       </div>
     </div>
   </div>
@@ -130,7 +111,7 @@ Project
             <input type="search" required class="flex-1 rounded-md p-2 border border-gray-300" placeholder="Search" name="socialSearch" id="socialSearch" />
             <button type="submit" class="hover:bg-bluextend: {},e-600 hover:border-blue-600 border-solid border-2 p-2 rounded-md font-mono">Search</button>
          </form>
-         <div class="mt-7 rounded-2xl" id="user-list">
+         <div class="mt-7 rounded-2xl hide-scrollbar" id="user-list">
             <div class="my-4">
                <div class="w-full px-3 py-2 shadow-md rounded-2xl userCard flex justify-between items-center">
                   <div class="block relative" id="menu-button">

@@ -53,5 +53,21 @@ module.exports = {
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio'),
+        // Add custom plugin to hide scrollbar
+        function({ addUtilities }) {
+            const newUtilities = {
+                '.hide-scrollbar': {
+                    /* Hide scrollbar for IE, Edge, and Firefox */
+                    '-ms-overflow-style': 'none',  /* IE and Edge */
+                    'scrollbar-width': 'none',  /* Firefox */
+                    /* Hide scrollbar for Chrome, Safari, and Opera */
+                    '&::-webkit-scrollbar': {
+                        display: 'none',
+                    },
+                },
+            }
+
+            addUtilities(newUtilities, ['responsive', 'hover']);
+        }
     ],
 }
