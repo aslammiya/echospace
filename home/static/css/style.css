@@ -1,5 +1,9 @@
 html{
-    background: rgb(212, 214, 243);
+    background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+}
+
+.rounded-lg {
+    border-radius: 1rem;
 }
 .usermCard{
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 4px;
@@ -14,7 +18,10 @@ html{
 }
 .container{
     height: calc(100svh - 10svh); 
+    backdrop-filter: blur(1000px);
+
 }
+
 .connectContainer {
     height: calc(100svh - 43svh);
 }

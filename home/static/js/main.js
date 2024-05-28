@@ -54,7 +54,7 @@ userIcons.forEach((icon, index) => {
     icon.addEventListener('mouseout', () => {
         menuBtn.classList.add('hidden');
     });
-
+    
     menuBtn.addEventListener('click', function() {
         // Hide all other menus
         userMenus.forEach((m, i) => {
@@ -65,7 +65,7 @@ userIcons.forEach((icon, index) => {
         // Toggle the current menu
         menu.classList.toggle('hidden');
     });
-
+    
     menu.addEventListener('mouseleave', () => {
         menu.classList.add('hidden');
     });
@@ -74,3 +74,29 @@ userIcons.forEach((icon, index) => {
 document.querySelector("#showAnswer").addEventListener('click', ()=>{
     document.querySelector("#answerDialog").classList.toggle('hidden');
 });
+
+let editbutton = document.querySelector('#edit-button');
+editbutton.addEventListener('click', () => {
+    let inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        input.classList.toggle('pointer-events-none');
+        input.toggleAttribute('readonly');
+        input.focus();
+    });
+});
+editbutton.addEventListener('click', ()=>{
+    if(document.querySelector("#editSave").innerHTML == "Save"){
+        document.querySelector("#editSave").innerHTML = "Edit";   
+    }else{
+        document.querySelector("#editSave").innerHTML = "Save";
+    }  
+})
+
+document.querySelector("#closeProfile").addEventListener('click', ()=>{
+    profileInfo.classList.toggle("hidden");
+})
+
+document.querySelector("#showProfile").addEventListener('click', ()=>{
+    profileInfo.classList.toggle("hidden");
+    document.querySelector("#showProfile").classList.toggle('profileOpen');
+})

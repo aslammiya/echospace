@@ -21,7 +21,8 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('loginUser/', loginUser, name="loginUser"),
+    path('userRegistration/', userRegistration, name="userRegistration"),
     path("__reload__/", include("django_browser_reload.urls")),
     path('', home, name="home"),
-    path('profile', profile, name="profile")
 ]
