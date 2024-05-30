@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-Project
+Registration
 {% endblock %}
 {% block content %}
 {% load static %}
@@ -8,13 +8,22 @@ Project
     <div class="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
         <h2 class="text-2xl font-bold mb-4 text-gray-800">Registration</h2>
         <form action="#" method="POST">
+            {% csrf_token %}
             <div class="mb-4">
-                <label for="name" class="block text-gray-700 font-bold mb-2">Name</label>
-                <input type="text" id="name" name="name" class="border rounded-xl px-3 py-2 w-full focus:outline-none focus:border-blue-400" placeholder="Enter your name" required>
+                <label for="first-name" class="block text-gray-700 font-bold mb-2">First Name</label>
+                <input type="text" id="first-name" name="first-name" class="border rounded-xl px-3 py-2 w-full focus:outline-none focus:border-blue-400" placeholder="Enter your name" required>
+            </div>
+            <div class="mb-4">
+                <label for="last-name" class="block text-gray-700 font-bold mb-2">Last Name</label>
+                <input type="text" id="last-name" name="last-name" class="border rounded-xl px-3 py-2 w-full focus:outline-none focus:border-blue-400" placeholder="Enter your name" required>
             </div>
             <div class="mb-4">
                 <label for="username" class="block text-gray-700 font-bold mb-2">Username</label>
                 <input type="text" id="username" name="username" class="border rounded-xl px-3 py-2 w-full focus:outline-none focus:border-blue-400" placeholder="Enter your username" required>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 font-bold mb-2">Password</label>
+                <input type="text" id="password" name="password" class="border rounded-xl px-3 py-2 w-full focus:outline-none focus:border-blue-400" placeholder="Enter your username" required>
             </div>
             <div class="mb-4">
                 <label for="dp" class="block text-gray-700 font-bold mb-2">Profile Picture</label>

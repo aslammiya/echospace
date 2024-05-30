@@ -18,11 +18,17 @@ from django.contrib import admin
 from django.urls import path
 from home.views import *
 from django.urls import include, path
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('loginUser/', loginUser, name="loginUser"),
-    path('userRegistration/', userRegistration, name="userRegistration"),
+    path('login/', sign_in, name='login'),
+    path('logout/', sign_out, name='logout'),
+    path('register/', sign_up, name='register'),
     path("__reload__/", include("django_browser_reload.urls")),
     path('', home, name="home"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
