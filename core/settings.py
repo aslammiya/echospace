@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#r#u51cbh(2gbtwh)7met481!%z-6$kvmqk#&tdx$0u^jea=a8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', '*']
 
 
 # Application definition
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 TAILWIND_APP_NAME = 'theme'
 
 INTERNAL_IPS = [
-    "127.0.0.1",
+    "127.0.0.1", 
 ]
 
 MIDDLEWARE = [
@@ -81,9 +81,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-
-WSGI_APPLICATION = 'api.wsgi.app'
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -98,7 +95,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
-AUTH_USER_MODEL = 'home.customeUser'
+AUTH_USER_MODEL = 'home.CustomUser'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

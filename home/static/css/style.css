@@ -96,3 +96,16 @@ html{
         opacity: 0;
     }
 }
+
+.green-border {
+    border-style: solid !important;
+    border-width: 2px !important;
+    border-color: rgb(5, 206, 5) !important; 
+
+}
+
+.red-border {
+    border-style: solid !important;
+    border-width: 2px !important;
+    border-color: rgb(255, 0, 0) !important;
+}
