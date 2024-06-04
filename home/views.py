@@ -4,18 +4,26 @@ from django.http import JsonResponse
 import json
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect
 
+@login_required(login_url="/login/")
 def home(request):
+    userInfo = CustomUser.objects.all()
     context = {'noIcons': range(150),
                'noSocialUser': range(20),
                'online': "green",
                'offline': "red",
                'name': "Aslam Miya",
                'username': "@aslammiya",
-               'noOfUsers': 50
+               'noOfUsers': 50,
+               'userInfo': 'user',
+               'user': request.user
                }
     return render(request, "index.html", context)
-
+    
+@csrf_protect
 def sign_up(request):
     if request.method == "POST":
         data = request.POST
@@ -47,6 +55,7 @@ def check_username(request):
         print(user_exists)
         return JsonResponse({'available': not user_exists})
 
+@csrf_protect
 def sign_in(request):
     if request.method == 'POST':
         username = request.POST.get("username")
@@ -63,4 +72,5 @@ def sign_in(request):
     return render(request, "loginUser.html")
 
 def sign_out(request):
-    pass
+    logout(request)
+    return redirect("/login")

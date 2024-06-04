@@ -1,24 +1,35 @@
 {% extends 'base.html' %}
 {% block title %}
-Project
+  Project
 {% endblock %}
 {% block content %}
-{% load static %}
-<div class="bg-gradient min-h-screen flex items-center justify-center">
+  {% load static %}
+  <div class="bg-gradient min-h-screen flex items-center justify-center">
     <div class="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
-        <h2 class="text-2xl font-bold mb-4 text-gray-800">Login</h2>
-        <form action="#" method="POST">
-            {% csrf_token %}
-            <div class="mb-4">
-                <label for="username" class="block text-gray-700 font-bold mb-2">Username</label>
-                <input type="text" id="username" name="username" class="border rounded-xl px-3 py-2 w-full focus:outline-none focus:border-blue-400" placeholder="Enter your username" required>
-            </div>
-            <div class="mb-6">
-                <label for="password" class="block text-gray-700 font-bold mb-2">Password</label>
-                <input type="password" id="password" name="password" class="border rounded-xl px-3 py-2 w-full focus:outline-none focus:border-blue-400" placeholder="Enter your password" required>
-            </div>
-            <button type="submit" class="bg-blue-500 text-white rounded-lg px-4 py-2 w-full font-bold hover:bg-blue-600">Login</button>
-        </form>
+      {% if messages %}
+        {% for message in messages %}
+          <span class="block text-gray-800 font-semibold mb-6 bg-red-100 px-5 py-3 rounded-lg">{{ message }}</span>
+        {% endfor %}
+      {% endif %}
+      <h2 class="text-2xl font-bold mb-4 text-gray-800">Login</h2>
+      <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-4">
+          <label for="username" class="block text-gray-700 font-bold mb-2">Username</label>
+          <input type="text" id="username" name="username" class="border rounded-xl px-3 py-2 w-full focus:outline-none focus:border-blue-400" placeholder="Enter your username" required />
+        </div>
+        <div class="mb-6">
+          <label for="password" class="block text-gray-700 font-bold mb-2">Password</label>
+          <input type="password" id="password" name="password" class="border rounded-xl px-3 py-2 w-full focus:outline-none focus:border-blue-400" placeholder="Enter your password" required />
+        </div>
+        <label for="register" class="block text-gray-500 font-semibold mb-3"><a href="/register">Click here to register</a></label>
+        <button type="submit" class="bg-blue-500 text-white rounded-lg px-4 py-2 w-full font-bold hover:bg-blue-600">Login</button>
+        <div class="flex">
+          <hr class="w-full text-gray-700 font"/>
+          <span>Or</span>
+          <hr/>
+        </div>
+      </form>
     </div>
-</div>
+  </div>
 {% endblock %}

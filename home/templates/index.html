@@ -7,18 +7,22 @@ Project
 <nav class="backdrop-blur-sm flex justify-end px-5 max-w-full p-2 relative z-50">
    <div>
       <div class="block relative rounded-full usermCard" id="menu-button">
-         <img class="w-11 h-12 rounded-full object-top" src="{% static 'images/dp.png' %}" width="80%" alt="" srcset="" />
+         {% if user.profile_image %}
+            <img class="w-11 h-12 rounded-full object-top" src="{{ user.profile_image.url }}" width="80%" alt="Profile Image">
+         {% else %}
+            <img class="w-11 h-12 rounded-full object-top" src="{% static 'images/dp.png' %}" width="80%" alt="Default Profile Image">
+         {% endif %}
       </div>
       <div class="absolute right-0 mt-2 w-fit px-1 bg-white rounded-tl-lg rounded-bl-lg rounded-br-lg mx-12 shadow-2xl z-50 hidden" id="menu-items">
          <a id="showProfile" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded-tl-lg">Profile</a>
-         <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
+         <a href="/logout" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
          <hr class="m-0 p-0" />
          <div class="flex justify-evenly">
             <div classs="">
                <a href="#"><i class="fa-brands fa-linkedin text-blue-700 hover:text-blue-900  text-xl"></i></a>
             </div>
             <div classs="">
-               <a href="#"><i class="fa-brands fa-github text-gray-700 hover:text-gray-900 text-xl"></i></a>
+               <a href="https://github.com/aslammiya"><i class="fa-brands fa-github text-gray-700 hover:text-gray-900 text-xl"></i></a>
             </div>
          </div>
       </div>
@@ -31,18 +35,18 @@ Project
             <i class="fas fa-times"></i>
         </button>
          <div class="flex justify-center pb-4">
-            <div class="rounded-full overflow-hidden border-4 border-blue-500">
-               <img class="w-24 h-24 sm:w-24 sm:h-24 md:w-28 md:h-28 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image">
+            <div class="rounded-full overflow-hidden">
+               <img class="w-24 h-24 sm:w-24 sm:h-24 md:w-28 md:h-28 object-cover" src="/media/{{ user.profile_image }}" alt="Profile Image">
             </div>
          </div>
       
          <div class="mt-6 pb-10">
             <form id="profileForm">
                <div class="flex items-center mb-2">
-                  <input type="text" id="name" name="name" class="flex-1 text-lg font-medium py-2 px-4 bg-transparent border-none outline-none pointer-events-none inputs" placeholder="Name" value="{{name}}" readonly>
+                  <input type="text" id="name" name="name" class="flex-1 text-lg font-medium py-2 px-4 bg-transparent border-none outline-none pointer-events-none inputs" placeholder="Name" value="{{user.first_name}} {{user.last_name}}" readonly>
                </div>
                <div class="flex items-center mb-4">
-                  <input type="text" id="username" name="username" class="flex-1 text-lg px-4 bg-transparent border-none pointer-events-none outline-none inputs" placeholder="Username" value="{{username}}" readonly>
+                  <input type="text" id="username" name="username" class="flex-1 text-lg px-4 bg-transparent border-none pointer-events-none outline-none inputs" placeholder="Username" value="@{{user.username}}" readonly>
                </div>
                <button type="button" class="mt-4 ml-2 bg-blue-500 w-full hover:bg-blue-600 rounded-xl text-white py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-300" id="edit-button" onclick="enableEdit()">
                   <span id="editSave" class="text-lg font-medium font-mono">Edit</span>
@@ -66,8 +70,8 @@ Project
   <div class="absolute container rounded-2xl px-6 py-5 lg:px-12 w-full" id="innerContainer">
     <div class="">
       <div class="lg:w-1/5 lg:flex lg:justify-evenly">
-        <span class="font-semibold text-2xl text-gray-950 md:block">Aslam Miya</span>
-        <span class="font-semibold text-lg text-gray-700 lg:mt-1 md:block">@aslammiya</span>
+        <span class="font-semibold text-2xl text-gray-950 md:block">{{user.first_name}} {{user.last_name}}</span>
+        <span class="font-semibold text-lg text-gray-700 lg:mt-1 md:block">@{{user.username}}</span>
       </div>
     </div>
     <hr class="my-3">
