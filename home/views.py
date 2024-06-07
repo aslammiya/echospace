@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
+import random, string
 
 @login_required(login_url="/login/")
 def home(request):
@@ -39,7 +40,8 @@ def sign_up(request):
             last_name=lname,
             username=uname,
             password=paswd,
-            profile_image=profile_img
+            profile_image=profile_img,
+            isGuest=False
         )
         new_user.set_password(paswd)
         new_user.save()
@@ -74,3 +76,38 @@ def sign_in(request):
 def sign_out(request):
     logout(request)
     return redirect("/login")
+
+def genGuestCred():
+    firstName = "User"
+    while True:
+        lastName = random.randint(1000, 9999)
+        if CustomUser.objects.filter(last_name=lastName).exists():
+            continue
+        else:
+            break
+    guestUserName = (f"{firstName.lower()}{lastName}")
+    password = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+    guestUserObject = CustomUser.objects.create(
+        first_name=firstName,
+        last_name=lastName,
+        username=guestUserName
+    )
+    guestUserObject.set_password(password)
+    guestUserObject.save()
+    return guestUserName, password
+
+@csrf_protect
+def guest_login(request):
+    guestUserName, password = genGuestCred()
+    user = authenticate(username=guestUserName, password=password)
+    if user is not None:
+        login(request, user)
+        return redirect("/")
+    else:
+        messages.error(request, "Failed to login as guest.")
+        return redirect("/login")
+
+@login_required(login_url="/login/")
+def profile(request):
+    
+    return render(request, 'profile.html')

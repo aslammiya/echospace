@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}
+  Project
+{% endblock %}
+{% block content %}
+  {% load static %}
+  <div class="flex items-center justify-center min-h-screen">
+    <div class="relative shadow-xl rounded-lg bg-neutral-100 max-w-xl mx-auto">
+      <div class="bg-white px-8 py-10 rounded-2xl shadow-xl">
+        <div class="flex justify-center pb-4">
+          <div class="relative">
+            <div class="rounded-full overflow-hidden">
+              {% if user.profile_image %}
+                <img class="w-24 h-28 sm:w-28 sm:h-32 object-cover" src="/media/{{ user.profile_image }}" alt="Profile Image" />
+              {% else %}
+                <img class="w-24 h-28 sm:w-28 sm:h-32 object-cover" src="{% static 'images/dp.png' %}" alt="Profile Image" />
+              {% endif %}
+            </div>
+            <i type="button" class="fas fa-edit absolute bottom-0 right-0 bg-gray-600 opacity-55 text-white text-xs rounded-full px-3 py-1 hover:bg-gray-950 " onclick="changeProfileImage()"></i>
+
+          </div>
+        </div>
+        <div class="mt-6">
+          <form id="profileForm">
+            <div class="flex items-center mb-2 w-72">
+              <label for="text" id="name_label" name="name_label" class="w-full font-semibold rounded-l-lg text-lg py-2 px-4">{{ user.first_name }} {{user.last_name}}</label>
+              <div class="flex items-center mb-2 hidden" id="name_feild">
+                <div class="flex-1">
+                  <input type="text" id="first_name" name="first_name" class="w-full rounded-l-lg text-lg font-medium py-2 px-4 bg-transparent border-b border-gray-300 outline-none" placeholder="First Name" value="{{ user.first_name }}" readonly />
+                </div>
+                <div class="flex-1">
+                  <input type="text" id="last_name" name="last_name" class="w-full text-lg font-medium rounded-r-lg py-2 px-4 bg-transparent border-b border-gray-300 outline-none" placeholder="Last Name" value="{{ user.last_name }}" readonly />
+                </div>
+              </div>
+              <i class="fas fa-edit ml-2 text-gray-500 cursor-pointer" id="edit_name" onclick="enableNameFields()"></i>
+            </div>
+            <div class="flex items-center mb-2 w-72">
+              <label for="username"  id="username_label" name="username_label" class="flex-1 rounded-lg text-lg px-4">@{{ user.username }}</label>
+              <input type="text" id="username" name="username" class="flex-1 hidden rounded-lg text-lg px-4 bg-transparent border-b border-gray-300 outline-none" placeholder="Username" value="@{{ user.username }}" readonly />
+              <i class="fas fa-edit ml-2 text-gray-500 cursor-pointer" id="edit_username" onclick="enableFieldUsername()"></i>
+            </div>
+            <div class="flex items-center mb-4 w-72 hidden">
+              <label for="email"  id="email_label" name="email_label" class="flex-1 rounded-lg text-lg px-4">{{ user.email }}</label>
+              <input type="email" id="email" name="email" class="flex-1 text-lg hidden rounded-lg px-4 bg-transparent border-b border-gray-300 outline-none" placeholder="Email" value="{{ user.email }}" readonly />
+              <i class="fas fa-edit ml-2 text-gray-500 cursor-pointer" id="edit_email" onclick="enableFieldEmail()"></i>
+            </div>
+            <button type="button" id="save_profile_info" class="mt-4 bg-blue-500 w-full hover:bg-blue-600 rounded-xl text-white py-2 px-4 focus:outline-none focus:ring-2 focus:ring-green-300 hidden" id="save-button">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}

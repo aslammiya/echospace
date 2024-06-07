@@ -75,22 +75,22 @@ document.querySelector("#showAnswer").addEventListener('click', ()=>{
     document.querySelector("#answerDialog").classList.toggle('hidden');
 });
 
-let editbutton = document.querySelector('#edit-button');
-editbutton.addEventListener('click', () => {
-    let inputs = document.querySelectorAll('input');
-    inputs.forEach(input => {
-        input.classList.toggle('pointer-events-none');
-        input.toggleAttribute('readonly');
-        input.focus();
-    });
-});
-editbutton.addEventListener('click', ()=>{
-    if(document.querySelector("#editSave").innerHTML == "Save"){
-        document.querySelector("#editSave").innerHTML = "Edit";   
-    }else{
-        document.querySelector("#editSave").innerHTML = "Save";
-    }  
-})
+// let editbutton = document.querySelector('#edit-button');
+// editbutton.addEventListener('click', () => {
+//     let inputs = document.querySelectorAll('input');
+//     inputs.forEach(input => {
+//         input.classList.toggle('pointer-events-none');
+//         input.toggleAttribute('readonly');
+//         input.focus();
+//     });
+// });
+// editbutton.addEventListener('click', ()=>{
+//     if(document.querySelector("#editSave").innerHTML == "Save"){
+//         document.querySelector("#editSave").innerHTML = "Edit";   
+//     }else{
+//         document.querySelector("#editSave").innerHTML = "Save";
+//     }  
+// })
 
 document.querySelector("#closeProfile").addEventListener('click', ()=>{
     profileInfo.classList.toggle("hidden");
@@ -100,3 +100,28 @@ document.querySelector("#showProfile").addEventListener('click', ()=>{
     profileInfo.classList.toggle("hidden");
     document.querySelector("#showProfile").classList.toggle('profileOpen');
 })
+
+setTimeout(function() {
+    document.getElementById("changeGuestPaswd").style.display = "none";
+  }, 5000);
+
+  function enableNameFields(){
+    let name_label = document.getElementById("name_label");
+    let first_name = document.getElementById("first_name");
+    let last_name = document.getElementById("last_name");
+    name_label.classList.add('hidden');
+    document.getElementById('edit_name').style.display = 'none';
+    document.querySelector("#name_feild").classList.remove("hidden");
+    first_name.removeAttribute('readonly');
+    last_name.removeAttribute('readonly');
+    document.querySelector("#save-button").classList.remove('hidden');
+}
+
+function enableFieldUsername(){
+    let username_label = document.querySelector("#username_label")
+    username_label.classList.add('hidden');
+    document.getElementById('edit_username').style.display = 'none';
+    document.querySelector("#username").classList.remove("hidden");
+    document.querySelector("#username").removeAttribute('readonly');
+    document.querySelector("#save-button").classList.remove('hidden');
+}

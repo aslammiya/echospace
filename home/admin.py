@@ -5,9 +5,7 @@ from .models import CustomUser
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
     fieldsets = UserAdmin.fieldsets + (
-        (None, {'fields': ('profile_image',)}),
+        (None, {'fields': ('profile_image', 'isGuest')}),
     )
 
 admin.site.register(CustomUser, CustomUserAdmin)
-
-

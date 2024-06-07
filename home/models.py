@@ -3,3 +3,4 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     profile_image = models.ImageField(upload_to="profile_pictures/", null=True, blank=True)
+    isGuest = models.BooleanField(default=True)

@@ -25,12 +25,14 @@
         <label for="register" class="block text-gray-500 font-semibold mb-3"><a href="/register">Click here to register</a></label>
         <button type="submit" class="bg-blue-500 text-white rounded-lg px-4 py-2 w-full font-bold hover:bg-blue-600">Login</button>
         <div class="inline-flex items-center justify-center w-full px-2">
-          <hr class="w-full h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+          <hr class="w-full h-px my-5 bg-gray-200 border-0 dark:bg-gray-700" />
           <span class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2">OR</span>
         </div>
-        <div class="">
-        <label for="register" class="text-gray-800 font-semibold mb-3"><a href="/register">Click here to register</a></label>
-        <button type="submit" class="bg-blue-500 text-white rounded-lg px-4 py-2 w-full font-bold hover:bg-blue-600">Login</button>
+      </form>
+      <form action="{% url 'guest_login' %}" method="POST">
+        {% csrf_token %}
+        <label for="login as guest" class="text-gray-700 font-semibold"><a href="#">Login as a guest</a></label>
+        <button type="submit" class="bg-gray-500 text-white rounded-lg px-4 py-2 my-3 w-full font-bold hover:bg-gray-600">Guest login</button>
       </form>
     </div>
   </div>
