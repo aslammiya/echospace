@@ -8,22 +8,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 import random, string
+from django.shortcuts import get_object_or_404
 
-@login_required(login_url="/login/")
-def home(request):
-    userInfo = CustomUser.objects.all()
-    context = {'noIcons': range(150),
-               'noSocialUser': range(20),
-               'online': "green",
-               'offline': "red",
-               'name': "Aslam Miya",
-               'username': "@aslammiya",
-               'noOfUsers': 50,
-               'userInfo': 'user',
-               'user': request.user
-               }
-    return render(request, "index.html", context)
-    
 @csrf_protect
 def sign_up(request):
     if request.method == "POST":
@@ -34,7 +20,6 @@ def sign_up(request):
         paswd = data.get("password")
         profile_img = request.FILES.get("dp")
 
-        print(fname, lname, uname, paswd, profile_img)
         new_user = CustomUser.objects.create(
             first_name=fname,
             last_name=lname,
@@ -108,6 +93,34 @@ def guest_login(request):
         return redirect("/login")
 
 @login_required(login_url="/login/")
-def profile(request):
-    
-    return render(request, 'profile.html')
+def home(request):
+    userInfo = CustomUser.objects.all()
+    context = {'noIcons': range(150),
+               'noSocialUser': range(20),
+               'online': "green",
+               'offline': "red",
+               'name': "Aslam Miya",
+               'username': "@aslammiya",
+               'noOfUsers': 50,
+               'userInfo': 'user',
+               'user': request.user
+               }
+    return render(request, "index.html", context)
+
+@login_required(login_url="/login/")
+def saveProfileInfo(request):
+    if request.method == "POST":
+        data = request.POST
+        username = data.get("username")
+        firstName = data.get("first_name")
+        lastName = data.get("last_name")
+        user = get_object_or_404(CustomUser, username = request.user.username)
+        
+        user.first_name = firstName
+        user.last_name = lastName
+        user.username = username
+        if request.FILES.get("dp"):
+            user.profile_image = request.FILES.get("dp")
+        user.isGuest = False
+        user.save()
+    return redirect('/')
