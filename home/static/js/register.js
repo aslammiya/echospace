@@ -1,11 +1,17 @@
 document.getElementById('username').addEventListener('input', function() {
     var username = this.value.trim();
     if (username !== '') {
-        checkUsernameAvailability(username);
-    } else {
+      // Check for spaces
+      if (username.indexOf(' ') !== -1) {
+        document.getElementById('username').classList.add("red-border");
         document.getElementById('username').classList.remove("green-border");
+      } else {
+        checkUsernameAvailability(username);
+      }
+    } else {
+      document.getElementById('username').classList.remove("green-border", "red-border");
     }
-});
+  });
 
 function checkUsernameAvailability(username) {
     fetch('/check_username/', {
@@ -55,3 +61,16 @@ document.querySelector('form').addEventListener('submit', function(event) {
         this.submit();
     }
 });
+
+document.getElementById('password').addEventListener('input', function() {
+    var password = this.value.trim();
+  
+    if (password.length < 8) {
+      this.classList.add("red-border");
+      document.getElementsByTagName("button").setAttribute('disabled', true);
+    } else {
+      this.classList.remove("red-border");
+      this.classList.add("green-border");
+      document.getElementsByTagName("button").removeAttribute('disabled');
+    }
+  });

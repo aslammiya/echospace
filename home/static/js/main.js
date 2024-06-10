@@ -124,11 +124,16 @@ function changeProfileImage() {
 document.getElementById('username').addEventListener('input', function() {
     var username = this.value.trim();
     if (username !== '') {
+      if (username.indexOf(' ') !== -1) {
+        document.getElementById('username').classList.add("red-border");
+        document.getElementById('username').classList.remove("green-border");
+      } else {
         checkUsernameAvailability(username);
+      }
     } else {
-        document.getElementById('username').classList.remove("green-border", "red-border");
+      document.getElementById('username').classList.remove("green-border", "red-border");
     }
-});
+  });
 
 function checkUsernameAvailability(username) {
     fetch('/check_username/', {
@@ -178,3 +183,26 @@ document.querySelector('form').addEventListener('submit', function(event) {
         this.submit();
     }
 });
+
+document.getElementById('new_password').addEventListener('input', function() {
+    var new_password = this.value.trim();
+    if (new_password.length < 8) {
+      this.classList.add("red-border");
+    } else {
+      this.classList.remove("red-border");
+      this.classList.add("green-border");
+    }
+});
+
+document.querySelector("#closeChangePassword").addEventListener('click', ()=>{
+    document.getElementById("changePasswordDiv").classList.toggle("hidden");
+})
+
+document.querySelector("#change-password-button").addEventListener('click', ()=>{
+    document.querySelector("#profileInfo").classList.add('hidden');
+    document.getElementById("changePasswordDiv").classList.toggle("hidden");
+})
+
+document.querySelector("#changePassPopup").addEventListener("click", ()=>{
+    document.getElementById("changePasswordDiv").classList.toggle("hidden");
+})

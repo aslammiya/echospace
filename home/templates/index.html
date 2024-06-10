@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
   {% load static %}
-  <nav class="backdrop-blur-sm flex justify-end px-5 max-w-full p-2 relative z-50">
+  <nav class="flex justify-end px-5 max-w-full p-2 relative z-50">
     <div>
       <div class="block relative rounded-full usermCard" id="menu-button">
         {% if user.profile_image %}
@@ -45,8 +45,8 @@
             </div>
             <div class="relative">
               <i type="button" class="fas fa-edit absolute bottom-0 right-0 bg-gray-600 opacity-55 text-white text-xs rounded-full px-3 py-1 hover:bg-gray-950" id="dpEditIcon" onclick="changeProfileImage()"></i>
-              <input type="file" id="changeProfileImageFile" id="dp" name="dp" hidden onchange="showUploadedMessage(this)">
-          </div>
+              <input type="file" id="changeProfileImageFile" id="dp" name="dp" hidden onchange="showUploadedMessage(this)" />
+            </div>
           </div>
         </div>
         <div class="mt-6 pb-10">
@@ -67,10 +67,25 @@
             <input type="text" id="username" name="username" class="flex-1 hidden rounded-lg text-lg px-4 bg-transparent border-b border-gray-300 outline-none" placeholder="Username" value="{{ user.username }}" />
             <i class="fas fa-edit ml-2 text-gray-500 cursor-pointer" id="edit_username" onclick="enableFieldUsername()"></i>
           </div>
+          <button type="button" class="mt-2 font-semibold bg-yellow-600 w-full hover:bg-yellow-700 rounded-xl text-white py-1 px-4 focus:outline-none focus:ring-2 focus:ring-orange-300" id="change-password-button">Change password</button>
           <button type="submit" class="mt-4 bg-blue-500 w-full hover:bg-blue-600 rounded-xl text-white py-2 px-4 focus:outline-none focus:ring-2 focus:ring-green-300 hidden" id="save-button">Save</button>
         </div>
       </form>
-      </div>
+    </div>
+  </div>
+
+  <div id="changePasswordDiv" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+    <div class="bg-white px-8 py-4 rounded-2xl shadow-xl pt-10">
+      <button id="closeChangePassword" class="relative -mt-8 -mr-6 bg-red-500 rounded-full w-8 h-8 flex mx-auto items-center justify-center text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"><i class="fas fa-times"></i></button>
+      <form id="changePassword" method="post" action="{% url 'changePassword' %}" class="px-3 py-1">
+        {% csrf_token %}
+        {% if user.isGuest == False %}
+          <input type="text" id="old_password" name="old_password" class="mb-4 rounded-lg text-lg px-4 bg-transparent border-b border-gray-300 outline-none block" placeholder="Old password" required />
+        {% endif %}
+        <input type="text" id="new_password" name="new_password" class="rounded-lg text-lg px-4 bg-transparent border-b border-gray-300 outline-none block" placeholder="New password" required />
+        <button type="submit" class="mt-4 bg-blue-500 w-full hover:bg-blue-600 rounded-lg text-white py-2 px-4 focus:outline-none focus:ring-2 focus:ring-green-300" id="change-password">Save</button>
+      </form>
+    </div>
   </div>
 
   <div id="initiateDialog" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
@@ -85,9 +100,18 @@
 
   <div class="container relative shadow-xl usermCaard rounded-lg bg-neutral-100 mx-auto my-auto z-7">
     <div id="changeGuestPaswd" class="fixed top-5 left-0 right-0 flex items-center justify-center z-50 hover:cursor-pointer">
-      <div class="absolute mx-auto flex items-center justify-center bg-red-500 bg-opacity-75 text-white p-1 rounded-xl px-2">
-        <span class="text-sm font-semibold">Change your password!</span>
-      </div>
+      {% if user.isGuest == True %}
+        <div id="changePassPopup" class="absolute mx-auto flex items-center justify-center bg-red-500 bg-opacity-75 text-white p-1 rounded-xl px-2">
+          <span class="text-sm font-semibold">Change your password!</span>
+        </div>
+      {% endif %}
+      {% if messages %}
+        {% for message in messages %}
+          <div id="changePassPopup" class="absolute mx-auto flex items-center justify-center bg-red-500 bg-opacity-75 text-white p-1 rounded-xl px-2">
+            <span class="text-sm font-semibold">Invalid old password</span>
+          </div>
+        {% endfor %}
+      {% endif %}
     </div>
     <div class="absolute container rounded-2xl px-6 py-5 lg:px-12 w-full" id="innerContainer">
       <div class="">
@@ -136,7 +160,7 @@
           <div class="w-full h-full flex gap-4 px-5 py-3 z-8 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-auto hide-scrollbar grid lg:grid-cols-10 md:grid-cols-7 sm:grid-cols-5 grid-cols-3" id="loby">
             {% for userIcon in noIcons %}
               <div name="userIcon" class="flex flex-wrap h-fit relative justify-center">
-                <img class="userIconOutline w-20 h-20 p-0.5 object-cover sm:w-20 sm:h-20 md:w-24 md:h-24" src="{% static 'images/dp.png' %}" alt="Profile Image" />
+                <img class="userIconOutlineNormal w-20 h-20 p-0.5 object-cover sm:w-20 sm:h-20 md:w-24 md:h-24" src="{% static 'images/dp.png' %}" alt="Profile Image" />
                 <div class="absolute rounded-2xl px-2 h-fit w-fit bg-black flex justify-center items-center opacity-25 self-end mb-2 hidden" id="userMenuBtn">
                   <i class="fas fa-ellipsis-h text-2xl text-white"></i>
                 </div>

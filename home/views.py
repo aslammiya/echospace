@@ -93,21 +93,6 @@ def guest_login(request):
         return redirect("/login")
 
 @login_required(login_url="/login/")
-def home(request):
-    userInfo = CustomUser.objects.all()
-    context = {'noIcons': range(150),
-               'noSocialUser': range(20),
-               'online': "green",
-               'offline': "red",
-               'name': "Aslam Miya",
-               'username': "@aslammiya",
-               'noOfUsers': 50,
-               'userInfo': 'user',
-               'user': request.user
-               }
-    return render(request, "index.html", context)
-
-@login_required(login_url="/login/")
 def saveProfileInfo(request):
     if request.method == "POST":
         data = request.POST
@@ -121,6 +106,48 @@ def saveProfileInfo(request):
         user.username = username
         if request.FILES.get("dp"):
             user.profile_image = request.FILES.get("dp")
-        user.isGuest = False
         user.save()
     return redirect('/')
+
+@login_required(login_url="/changePassword/")
+def changePassword(request):
+    if request.method == "POST":
+        data = request.POST
+        user = get_object_or_404(CustomUser, username = request.user.username)
+        old_password = data.get("old_password")
+        if user.check_password(old_password) or user.isGuest == True:
+            new_password = data.get("new_password")
+            user.set_password(new_password)
+            user.isGuest = False
+            user.save()
+        else:
+            messages.error(request, "Invalid old password.")
+            return redirect("/")
+
+    return redirect('/')
+
+def check_old_password(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        old_password = data.get('old_password')
+        user = request.user
+        if user.check_password(old_password):
+            return JsonResponse({'valid': True})
+        else:
+            return JsonResponse({'valid': False})
+    return JsonResponse({'valid': False}, status=400)
+
+@login_required(login_url="/login/")
+def home(request):
+    userInfo = CustomUser.objects.all()
+    context = {'noIcons': range(100),
+               'noSocialUser': range(200),
+               'online': "green",
+               'offline': "red",
+               'name': "Aslam Miya",
+               'username': "@aslammiya",
+               'noOfUsers': 0,
+               'userInfo': 'user',
+               'user': request.user
+               }
+    return render(request, "index.html", context)
