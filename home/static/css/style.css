@@ -12,11 +12,6 @@
 #friendsDrawar{
     height: calc(100svh - 11svh); 
 }
-.container{
-    height: calc(100svh - 10svh); 
-    backdrop-filter: blur(1000px);
-
-}
 
 .connectContainer {
     height: calc(100svh - 43svh);
@@ -105,3 +100,7 @@
     border-width: 2px !important;
     border-color: rgb(255, 0, 0) !important;
 }
+#lobby {
+    height: calc(var(--navbar-height) - 100vh);
+  }
+

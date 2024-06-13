@@ -1,88 +1,25 @@
-let menuButton = document.querySelector("#menu-button")
-menuButton.addEventListener('click', function(){
-    document.querySelector('#menu-items').classList.toggle("hidden")
+document.getElementById('menu-button').addEventListener('click', function() {
+    var menuItems = document.getElementById('menu-items');
+    menuItems.classList.toggle('hidden');
 });
 
-document.querySelector(".container").addEventListener('click', function(){
-    if (document.querySelector('#menu-items').classList.contains("hidden") == true){
-        
-    }else{
-        document.querySelector('#menu-items').classList.toggle("hidden")
+window.onclick = function(event) {
+    if (!event.target.matches('#menu-button, #menu-button *')) {
+        var menuItems = document.getElementById('menu-items');
+        if (!menuItems.classList.contains('hidden')) {
+            menuItems.classList.add('hidden');
+        }
     }
+}
+
+document.querySelector("#showProfile").addEventListener('click', ()=>{
+    profileInfo.classList.toggle("hidden");
 })
-
-let drawarToggle = document.querySelector("#drawarToggle")
-drawarToggle.addEventListener('click', function(){
-    document.querySelector('#friendsDrawar').classList.toggle("hidden")
-    drawarToggle.classList.toggle("hidden")
-});
-
-let closeDrawar = document.querySelector(".closeDrawar")
-closeDrawar.addEventListener('click', function(){
-    document.querySelector('#friendsDrawar').classList.add("hidden")
-    drawarToggle.classList.toggle("hidden")
-});
-
-let chatToggle = document.querySelector('#chatToggle')
-chatToggle.addEventListener('click', function(){
-    document.querySelector('#chatWindow').classList.toggle("hidden");
-    chatToggle.classList.toggle('hidden');
-})
-
-let closeChat = document.querySelector(".closeChat")
-closeChat.addEventListener('click', function(){
-    document.querySelector('#chatWindow').classList.toggle("hidden");
-    chatToggle.classList.toggle('hidden');
-});
-let userIcons = document.getElementsByName('userIcon');
-let userMenuBtns = document.querySelectorAll('#userMenuBtn');
-let userMenus = document.getElementsByName('userMenu');
-
-// Convert NodeLists to arrays to use forEach
-userIcons = Array.from(userIcons);
-userMenuBtns = Array.from(userMenuBtns);
-userMenus = Array.from(userMenus);
-
-userIcons.forEach((icon, index) => {
-    const menuBtn = userMenuBtns[index];
-    const menu = userMenus[index];
-
-    icon.addEventListener('mouseover', () => {
-        menuBtn.classList.remove('hidden');
-    });
-
-    icon.addEventListener('mouseout', () => {
-        menuBtn.classList.add('hidden');
-    });
-    
-    menuBtn.addEventListener('click', function() {
-        // Hide all other menus
-        userMenus.forEach((m, i) => {
-            if (i !== index) {
-                m.classList.add('hidden');
-            }
-        });
-        // Toggle the current menu
-        menu.classList.toggle('hidden');
-    });
-    
-    menu.addEventListener('mouseleave', () => {
-        menu.classList.add('hidden');
-    });
-});
-
-document.querySelector("#showAnswer").addEventListener('click', ()=>{
-    document.querySelector("#answerDialog").classList.toggle('hidden');
-});
 
 document.querySelector("#closeProfile").addEventListener('click', ()=>{
     profileInfo.classList.toggle("hidden");
 })
 
-document.querySelector("#showProfile").addEventListener('click', ()=>{
-    profileInfo.classList.toggle("hidden");
-    document.querySelector("#showProfile").classList.toggle('profileOpen');
-})
 
 setTimeout(function() {
     document.getElementById("changeGuestPaswd").style.display = "none";
@@ -194,15 +131,22 @@ document.getElementById('new_password').addEventListener('input', function() {
     }
 });
 
+console.log("kk")
+
 document.querySelector("#closeChangePassword").addEventListener('click', ()=>{
     document.getElementById("changePasswordDiv").classList.toggle("hidden");
-})
+});
 
 document.querySelector("#change-password-button").addEventListener('click', ()=>{
     document.querySelector("#profileInfo").classList.add('hidden');
     document.getElementById("changePasswordDiv").classList.toggle("hidden");
-})
+});
 
 document.querySelector("#changePassPopup").addEventListener("click", ()=>{
     document.getElementById("changePasswordDiv").classList.toggle("hidden");
-})
+});
+
+document.getElementById('closeDrawar').addEventListener('click', function() {
+    var leftArea = document.getElementById('leftArea');
+    leftArea.classList.toggle('hidden');
+});

@@ -3,31 +3,88 @@
   Project
 {% endblock %}
 {% block content %}
-  {% load static %}
-  <nav class="flex justify-end px-5 max-w-full p-2 relative z-50">
-    <div>
-      <div class="block relative rounded-full usermCard" id="menu-button">
-        {% if user.profile_image %}
-          <img class="w-11 h-12 rounded-full object-top" src="{{ user.profile_image.url }}" width="80%" alt="Profile Image" />
-        {% else %}
-          <img class="w-11 h-12 rounded-full object-top" src="{% static 'images/dp.png' %}" width="80%" alt="Default Profile Image" />
-        {% endif %}
-      </div>
-      <div class="absolute right-0 mt-2 w-fit px-1 bg-white rounded-tl-lg rounded-bl-lg rounded-br-lg mx-12 shadow-2xl z-50 hidden" id="menu-items">
-        <a id="showProfile" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded-tl-lg">Profile</a>
-        <a href="/logout" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
-        <hr class="m-0 p-0" />
-        <div class="flex justify-evenly">
-          <div classs="">
-            <a href="#"><i class="fa-brands fa-linkedin text-blue-700 hover:text-blue-900 text-xl"></i></a>
-          </div>
-          <div classs="">
-            <a href="https://github.com/aslammiya"><i class="fa-brands fa-github text-gray-700 hover:text-gray-900 text-xl"></i></a>
+{% load static %}
+
+  <div class="flex">
+    <div id="leftArea" class="flex z-46 h-screen md:hidden md:visible">
+      <div class="relative w-full max-w-sm md:max-w-md inset-0 bg-black z-50 flex flex-col h-full">
+        <div class="w-full text-white flex justify-between px-6 items-center py-3">
+          <i class="fas fa-search p-2 rounded-full bg-slate-900"></i>
+          <i class="fa-solid fa-arrow-left bg-slate-900 p-2 rounded-full" id="closeDrawar"></i>
+        </div>
+        <div class="px-5 py-4 flex-1 overflow-auto">
+          <form action="" class="flex flex-col md:flex-row justify-between gap-2 items-center hidden">
+            <input type="search" required class="flex-1 rounded-md p-2 border border-gray-300 focus:outline-none focus:border-blue-500" placeholder="Search" name="socialSearch" id="socialSearch" />
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white border border-blue-500 hover:border-blue-600 rounded-md px-4 py-2 transition duration-300 ease-in-out">Search</button>
+          </form>
+    
+          <div class="rounded-2xl overflow-auto" id="test">
+            {% for item in noSocialUser %}
+              <div class="my-4">
+                <div class="w-full px-3 py-2 rounded-2xl userCard flex justify-between items-center bg-white hover:bg-gray-200 transition duration-200 ease-in-out">
+                  <div class="block relative w-12 h-12">
+                    <img class=" rounded-full object-cover" src="{% static 'images/dp.png' %}" alt="Profile Picture" />
+                  </div>
+                  <div class="flex flex-col ml-3 px-5">
+                    <span class="block font-medium text-gray-800">Aslam Miya</span>
+                    <span class="block text-gray-500">@aslammiya</span>
+                  </div>
+                  <div class="w-2 h-2 bg-green-600 rounded-full mx-4"></div>
+                  <button type="button" class="hover:bg-blue-500 hover:border-blue-500 border-solid border-2 px-3 py-1 rounded-full flex items-center justify-center text-blue-500 hover:text-white transition duration-200 ease-in-out">
+                    <i class="fas fa-user-plus"></i>
+                  </button>
+                </div>
+              </div>
+            {% endfor %}
           </div>
         </div>
       </div>
     </div>
-  </nav>
+    <div class="flex flex-col h-screen w-screen">
+      <div class="flex-none" id="navbar">
+        <div class="flex justify-end px-5 py-0.5 bg-black">
+          <div class="block relative rounded-full usermCard" id="menu-button">
+            {% if user.profile_image %}
+              <img class="w-10 h-10 rounded-full object-top" src="{{ user.profile_image.url }}" width="80%" alt="Profile Image" />
+            {% else %}
+              <img class="w-10 h-10 rounded-full object-top" src="{% static 'images/dp.png' %}" width="80%" alt="Default Profile Image" />
+            {% endif %}
+          </div>
+          <div class="absolute right-0 w-fit px-1 bg-white rounded-tl-lg rounded-bl-lg rounded-br-lg mx-12 shadow-2xl z-50 hidden mt-12" id="menu-items">
+            <a id="showProfile" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded-tl-lg hover:cursor-pointer">Profile</a>
+            <a href="/logout" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
+            <hr class="m-0 p-0" />
+            <div class="flex justify-evenly">
+              <div class="">
+                <a href="#"><i class="fa-brands fa-linkedin text-blue-700 hover:text-blue-900 text-xl"></i></a>
+              </div>
+              <div class="">
+                <a href="https://github.com/aslammiya"><i class="fa-brands fa-github text-gray-700 hover:text-gray-900 text-xl"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-grow overflow-auto bg-[#0a0a0a] p-4 w-full md:rounded-l-3xl md:rounded-r-2xl" id="lobby">
+        <!-- Lobby content goes here -->
+      </div>
+    </div>
+  </div>
+  
+  <div id="changeGuestPaswd" class="fixed top-5 left-0 right-0 flex items-center justify-center z-50 hover:cursor-pointer">
+    {% if user.isGuest == True %}
+      <div id="changePassPopup" class="absolute mx-auto flex items-center justify-center bg-red-500 bg-opacity-75 text-white p-1 rounded-xl px-2">
+        <span class="text-sm font-semibold">Change your password!</span>
+      </div>
+    {% endif %}
+    {% if messages %}
+      {% for message in messages %}
+        <div id="changePassPopup" class="absolute mx-auto flex items-center justify-center bg-red-500 bg-opacity-75 text-white p-1 rounded-xl px-2">
+          <span class="text-sm font-semibold">Invalid old password</span>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
 
   <div id="profileInfo" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
     <div class="bg-white px-8 py-4 rounded-2xl shadow-xl pt-10">
@@ -98,123 +155,5 @@
     </div>
   </div>
 
-  <div class="container relative shadow-xl usermCaard rounded-lg bg-neutral-100 mx-auto my-auto z-7">
-    <div id="changeGuestPaswd" class="fixed top-5 left-0 right-0 flex items-center justify-center z-50 hover:cursor-pointer">
-      {% if user.isGuest == True %}
-        <div id="changePassPopup" class="absolute mx-auto flex items-center justify-center bg-red-500 bg-opacity-75 text-white p-1 rounded-xl px-2">
-          <span class="text-sm font-semibold">Change your password!</span>
-        </div>
-      {% endif %}
-      {% if messages %}
-        {% for message in messages %}
-          <div id="changePassPopup" class="absolute mx-auto flex items-center justify-center bg-red-500 bg-opacity-75 text-white p-1 rounded-xl px-2">
-            <span class="text-sm font-semibold">Invalid old password</span>
-          </div>
-        {% endfor %}
-      {% endif %}
-    </div>
-    <div class="absolute container rounded-2xl px-6 py-5 lg:px-12 w-full" id="innerContainer">
-      <div class="">
-        <div class="lg:w-1/5 lg:flex lg:justify-evenly">
-          <span class="font-semibold text-2xl text-gray-950 md:block">{{ user.first_name }} {{ user.last_name }}</span>
-          <span class="font-semibold text-lg text-gray-700 lg:mt-1 md:block">@{{ user.username }}</span>
-        </div>
-      </div>
-      <hr class="my-3" />
-      <div class="outline outline-1 outline-gray-200 rounded-2xl py-2 px-3 md:grid md:grid-cols-12 gap-3">
-        <div class="col-span-11">
-          <span class="font-medium font-serif text-xl tracking-wider underline block">Topic</span>
-          <p class="font-medium font-sans text-lg text-gray-900 tracking-wide my-1 block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas alias itaque veritatis quidem voluptatem quis officiis nostrum omnis ad adipisci provident, iste eius, reiciendis at?</p>
-        </div>
-        <div class="md:grid md:grid-rows-2 py-2 flex gap-3">
-          <button id="showAnswer" type="button" class="rounded-lg text-gray-900 py-1 justify-center w-full h-fit flex bg-gray-300 hover:bg-blue-600 hover:text-white"><span class="font-mono font-bold text-md">Show</span></button>
-          <button id="changeTopic" type="button" class="rounded-lg text-gray-900 py-1 justify-center w-full h-fit flex bg-gray-300 hover:bg-blue-600 hover:text-white"><span class="font-mono font-bold text-md">Change</span></button>
-        </div>
-        <div id="answerDialog" class="flex items-center bg-slate-300 rounded-lg px-3 w-full h-fit col-span-12 hidden">
-          <span class="font-extrabold font-sans text-lg text-gray-700">Answer: Your Answer lorem50</span>
-        </div>
-      </div>
-
-      <div class="">
-        <div class="w-full relative connectContainer my-3 border-2 rounded-xl border-solid border-gray-200 flex justify-end pt-3 pr-3 pl-3">
-          <div id="chatWindow" class="hidden relative w-full mdb-10 z-30 lg:w-1/3 md:w-1/2 usermCard shadow-black h-full bg-gray-300 bg-opacity-75 backdrop-blur-sm border-2 border-solid rounded-xl flex flex-col max-h-screen">
-            <div class="w-full closeChat h-6 bg-slate-400 rounded-t-xl hover:bg-red-400 text-white flex justify-center items-center px-2 pt-1">Close</div>
-            <div class="flex-grow p-4 overflow-y-auto space-y-4 hide-scrollbar">
-              <!-- Message from others -->
-              <div class="flex flex-col items-start">
-                <div class="text-sm font-bold text-gray-700">Aslam Miya</div>
-                <div class="bg-blue-200 text-black p-2 rounded-lg max-w-xs">Hello! How are you?</div>
-              </div>
-              <!-- My message -->
-              <div class="flex flex-col items-end">
-                <div class="bg-green-200 text-black p-2 rounded-lg max-w-xs">I'm good, thank you! How about you?</div>
-              </div>
-              <!-- More messages can be added similarly -->
-            </div>
-            <div class="flex items-center p-1 border-t-2 border-gray-300" id="messageInput">
-              <input type="text" class="flex-grow rounded-lg" placeholder="Type your message..." />
-              <button class="px-4 py-2 ml-1 text-white bg-blue-500 rounded-3xl hover:bg-blue-600"><i class="fa-solid fa-angles-right"></i></button>
-            </div>
-          </div>
-
-          <div class="w-full h-full flex gap-4 px-5 py-3 z-8 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-auto hide-scrollbar grid lg:grid-cols-10 md:grid-cols-7 sm:grid-cols-5 grid-cols-3" id="loby">
-            {% for userIcon in noIcons %}
-              <div name="userIcon" class="flex flex-wrap h-fit relative justify-center">
-                <img class="userIconOutlineNormal w-20 h-20 p-0.5 object-cover sm:w-20 sm:h-20 md:w-24 md:h-24" src="{% static 'images/dp.png' %}" alt="Profile Image" />
-                <div class="absolute rounded-2xl px-2 h-fit w-fit bg-black flex justify-center items-center opacity-25 self-end mb-2 hidden" id="userMenuBtn">
-                  <i class="fas fa-ellipsis-h text-2xl text-white"></i>
-                </div>
-                <div name="muteIcon" class="muteIcon absolute my-[28%] rounded-full hidden">
-                  <i class="fa-solid fa-volume-xmark text-4xl text-red-600"></i>
-                </div>
-                <div name="userMenu" class="absolute left-12 bottom-6 mt-2 w-fit opacity-90 bg-white rounded-xl shadow-lg z-10 hidden">
-                  <ul class="py-1">
-                    <li class="px-2 py-1 hover:bg-gray-200 cursor-pointer bg-white rounded-lg">Mute</li>
-                    <li class="px-2 py-1 hover:bg-gray-200 cursor-pointer bg-white rounded-lg">Kickout</li>
-                  </ul>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
-          <button id="noOfUsers" class="absolute bottom-0 left-0 z-9 border-2 px-2 p rounded-t-lg text-md bg-gray-200 font-bold text-gray-800"><span>{{ noOfUsers }}</span></button>
-
-          <button id="chatToggle" class="absolute bottom-0 z-9 border-2 px-2 p rounded-t-lg text-md bg-gray-200 font-bold text-gray-800"><i class="fa-solid fa-angles-right fa-rotate-270 px-1"></i>Messages</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="drawarToggle" class="relative w-4 lg:w-5 h-full rounded-l-lg hover:outline-blue-400 hover:bg-slate-100 outline outline-1 outline-gray-300 flex justify-center items-center">
-      <span class="text-center font-mono font-semibold"><i class="fa-solid fa-angles-right"></i></span>
-    </div>
-    <div id="friendsDrawar" class="outline outline-1 outline-gray-300 absolute w-full max-w-sm md:max-w-md inset-0 bg-white rounded-2xl my-1 mx-0.5 hidden">
-      <div class="w-full h-7 bg-slate-400 rounded-t-2xl hover:bg-red-400 text-white flex justify-center items-center px-2 pt-1 closeDrawar">
-        <button class="closeDrawar">Cose</button>
-      </div>
-      <div class="px-5 py-4">
-        <form action="" class="flex flex-col md:flex-row justify-between gap-2 items-center">
-          <input type="search" required class="flex-1 rounded-md p-2 border border-gray-300 focus:outline-none focus:border-blue-500" placeholder="Search" name="socialSearch" id="socialSearch" />
-          <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white border border-blue-500 hover:border-blue-600 rounded-md px-4 py-2 transition duration-300 ease-in-out">Search</button>
-        </form>
-
-        <div class="mt-7 rounded-2xl hide-scrollbar" id="user-list">
-          {% for item in noSocialUser %}
-            <div class="my-4">
-              <div class="w-full px-3 py-2 rounded-2xl userCard flex justify-between items-center bg-white hover:bg-gray-200 transition duration-200 ease-in-out">
-                <div class="block relative" id="menu-button">
-                  <img class="w-12 h-12 rounded-full object-cover" src="{% static 'images/dp.png' %}" alt="Profile Picture" />
-                </div>
-                <div class="flex flex-col ml-3">
-                  <span class="block font-medium text-gray-800">Aslam Miya</span>
-                  <span class="block text-gray-500">@aslammiya</span>
-                </div>
-                <div class="w-2 h-2 bg-green-600 rounded-full"></div>
-                <button type="button" class="hover:bg-blue-500 hover:border-blue-500 border-solid border-2 px-3 py-1 rounded-full flex items-center justify-center text-blue-500 hover:text-white transition duration-200 ease-in-out"><i class="fas fa-user-plus"></i></button>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>  
 {% endblock %}
