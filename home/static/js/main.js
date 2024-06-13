@@ -146,7 +146,35 @@ document.querySelector("#changePassPopup").addEventListener("click", ()=>{
     document.getElementById("changePasswordDiv").classList.toggle("hidden");
 });
 
-document.getElementById('closeDrawar').addEventListener('click', function() {
-    var leftArea = document.getElementById('leftArea');
-    leftArea.classList.toggle('hidden');
+
+// let leftAreaBtn = document.getElementById("leftAreaBtn");
+// var leftArea = document.getElementById('leftArea');
+// document.getElementById('closeDrawar').addEventListener('click', function() {
+//     leftArea.classList.toggle('lg:block');
+//     leftAreaBtn.classList.toggle('lg:hidden');
+//     leftAreaBtn.parentElement.classList.remove('md:justify-end');
+//     leftAreaBtn.parentElement.classList.add('justify-between')
+// });
+
+// document.getElementById('leftAreaBtn').addEventListener('click', function() {
+//     leftAreaBtn.parentElement.classList.add('md:justify-end');
+//     leftArea.classList.toggle('lg:block', 'hidden');
+//     leftAreaBtn.classList.toggle("lg:hidden");
+// });
+
+let leftAreaBtn = document.getElementById("leftAreaBtn");
+let leftArea = document.getElementById('leftArea');
+let closeDrawar = document.getElementById('closeDrawar');
+
+closeDrawar.addEventListener('click', function() {
+    leftArea.classList.toggle('lg:block');
+    leftAreaBtn.classList.toggle('lg:hidden');
+    leftAreaBtn.parentElement.classList.remove('md:justify-end');
+    leftAreaBtn.parentElement.classList.add('justify-between')
+});
+
+leftAreaBtn.addEventListener('click', function() {
+    leftAreaBtn.parentElement.classList.add('md:justify-end');
+    leftArea.classList.toggle('lg:block');
+    leftAreaBtn.classList.toggle('lg:hidden');
 });

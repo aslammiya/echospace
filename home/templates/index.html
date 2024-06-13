@@ -6,7 +6,7 @@
 {% load static %}
 
   <div class="flex">
-    <div id="leftArea" class="flex z-46 h-screen md:hidden md:visible">
+    <div id="leftArea" class="flex z-46 h-screen hidden lg:block">
       <div class="relative w-full max-w-sm md:max-w-md inset-0 bg-black z-50 flex flex-col h-full">
         <div class="w-full text-white flex justify-between px-6 items-center py-3">
           <i class="fas fa-search p-2 rounded-full bg-slate-900"></i>
@@ -41,13 +41,16 @@
       </div>
     </div>
     <div class="flex flex-col h-screen w-screen">
-      <div class="flex-none" id="navbar">
-        <div class="flex justify-end px-5 py-0.5 bg-black">
+      <div class="flex-none px-2" id="navbar">
+        <div class="flex justify-between md:justify-end bg-black">
+          <div class="text-white items-center my-auto lg:hidden block" id="leftAreaBtn">
+            <i class="fa-solid fa-arrow-right bg-slate-900 p-2.5 rounded-full"></i>
+          </div>
           <div class="block relative rounded-full usermCard" id="menu-button">
             {% if user.profile_image %}
-              <img class="w-10 h-10 rounded-full object-top" src="{{ user.profile_image.url }}" width="80%" alt="Profile Image" />
+              <img class="w-10 h-10 rounded-full object-cover" src="{{ user.profile_image.url }}" width="80%" alt="Profile Image" />
             {% else %}
-              <img class="w-10 h-10 rounded-full object-top" src="{% static 'images/dp.png' %}" width="80%" alt="Default Profile Image" />
+              <img class="w-10 h-10 rounded-full object-cover" src="{% static 'images/dp.png' %}" width="80%" alt="Default Profile Image" />
             {% endif %}
           </div>
           <div class="absolute right-0 w-fit px-1 bg-white rounded-tl-lg rounded-bl-lg rounded-br-lg mx-12 shadow-2xl z-50 hidden mt-12" id="menu-items">
