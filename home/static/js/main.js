@@ -23,7 +23,7 @@ document.querySelector("#closeProfile").addEventListener('click', ()=>{
 
 setTimeout(function() {
     document.getElementById("changeGuestPaswd").style.display = "none";
-  }, 5000);
+  }, 3000);
 
   function enableNameFields(){
     let name_label = document.getElementById("name_label");
@@ -146,35 +146,45 @@ document.querySelector("#changePassPopup").addEventListener("click", ()=>{
     document.getElementById("changePasswordDiv").classList.toggle("hidden");
 });
 
-
-// let leftAreaBtn = document.getElementById("leftAreaBtn");
-// var leftArea = document.getElementById('leftArea');
-// document.getElementById('closeDrawar').addEventListener('click', function() {
-//     leftArea.classList.toggle('lg:block');
-//     leftAreaBtn.classList.toggle('lg:hidden');
-//     leftAreaBtn.parentElement.classList.remove('md:justify-end');
-//     leftAreaBtn.parentElement.classList.add('justify-between')
-// });
-
-// document.getElementById('leftAreaBtn').addEventListener('click', function() {
-//     leftAreaBtn.parentElement.classList.add('md:justify-end');
-//     leftArea.classList.toggle('lg:block', 'hidden');
-//     leftAreaBtn.classList.toggle("lg:hidden");
-// });
-
 let leftAreaBtn = document.getElementById("leftAreaBtn");
 let leftArea = document.getElementById('leftArea');
 let closeDrawar = document.getElementById('closeDrawar');
+let subNavbar = document.getElementById('subNavbar');
 
 closeDrawar.addEventListener('click', function() {
-    leftArea.classList.toggle('lg:block');
-    leftAreaBtn.classList.toggle('lg:hidden');
-    leftAreaBtn.parentElement.classList.remove('md:justify-end');
-    leftAreaBtn.parentElement.classList.add('justify-between')
+    if (leftArea.style.display = 'inline'){
+        leftArea.style.display = 'none';
+        leftAreaBtn.style.display = 'inline-block';
+        subNavbar.style.justifyContent = 'space-between';
+    }else{
+        leftArea.style.display = 'inline';
+    }
+    
 });
 
 leftAreaBtn.addEventListener('click', function() {
-    leftAreaBtn.parentElement.classList.add('md:justify-end');
-    leftArea.classList.toggle('lg:block');
-    leftAreaBtn.classList.toggle('lg:hidden');
+    leftArea.style.display = 'inline';
+    subNavbar.style.justifyContent = 'end';
+    leftAreaBtn.style.display = 'none';
 });
+
+let explore = document.getElementById('explore');
+let followings = document.getElementById('followings');
+let exploreTab = document.getElementById('exploreTab');
+let followingsTab = document.getElementById('followingsTab');
+
+followingsTab.addEventListener('click', ()=>{
+    followingsTab.classList.add('border-b');
+    exploreTab.classList.remove('border-b');
+    explore.classList.add('hidden');
+    followings.classList.remove('hidden');
+    followings.parentElement.classList.add('hide-scrollbar')
+})
+
+exploreTab.addEventListener('click', ()=>{
+    exploreTab.classList.add('border-b');
+    followingsTab.classList.remove('border-b');
+    followings.classList.add('hidden');
+    explore.classList.remove('hidden');
+    followings.parentElement.classList.remove('hide-scrollbar')
+})

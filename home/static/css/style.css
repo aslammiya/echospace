@@ -104,3 +104,23 @@
     height: calc(var(--navbar-height) - 100vh);
   }
 
+#leftArea{
+    display: inline;
+}
+#subNavbar{
+    justify-content: end;
+}
+#leftAreaBtn{
+    display: none;
+}
+@media only screen and (max-width: 950px) {
+    #leftArea{
+        display: none;
+    }
+    #leftAreaBtn{
+        display: inline-block;
+    }
+    #subNavbar{
+        justify-content: space-between;
+    }
+}
