@@ -100,9 +100,9 @@
     border-width: 2px !important;
     border-color: rgb(255, 0, 0) !important;
 }
-#lobby {
+/* #lobby {
     height: calc(var(--navbar-height) - 100vh);
-  }
+  } */
 
 #leftArea{
     display: inline;
@@ -116,6 +116,7 @@
 @media only screen and (max-width: 950px) {
     #leftArea{
         display: none;
+        position: absolute;
     }
     #leftAreaBtn{
         display: inline-block;
