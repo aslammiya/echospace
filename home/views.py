@@ -139,7 +139,7 @@ def check_old_password(request):
 
 @login_required(login_url="/login/")
 def home(request):
-    userInfo = CustomUser.objects.all()
+    usersInfo = CustomUser.objects.all()
     context = {'noIcons': range(50),
                'noSocialUser': range(200),
                'online': "green",
@@ -147,7 +147,7 @@ def home(request):
                'name': "Aslam Miya",
                'username': "@aslammiya",
                'noOfUsers': 0,
-               'userInfo': 'user',
+               'usersInfo': usersInfo,
                'user': request.user
                }
     return render(request, "index.html", context)
