@@ -5,7 +5,6 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 
-# Ensure the setup is done before any models are imported
 django.setup()
 
 import home.routing

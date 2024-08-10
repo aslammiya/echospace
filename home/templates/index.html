@@ -41,11 +41,29 @@
           </form>
         </div>
         <div class="flex justify-evenly mb-2" id="tabs">
-          <button id="exploreTab" class="text-white hover:text-gray-300 focus:outline-none border-b font-bold">Explore</button>
           <button id="roomsTab" class="text-white hover:text-gray-300 focus:outline-none font-bold">Rooms</button>
+          <button id="exploreTab" class="text-white hover:text-gray-300 focus:outline-none border-b font-bold">Explore</button>
           <button id="followingsTab" class="text-white hover:text-gray-300 focus:outline-none font-bold">Followings</button>
         </div>
         <div class="px-5 flex-1 overflow-auto" id="tabContent">
+          
+          <div class="rounded-2xl overflow-auto scroll-m-0 hidden" id="rooms">
+            {% for item in noSocialUser %}
+              <div class="my-4 w-full px-2">
+                <div class="px-3 py-2 rounded-2xl userCard flex justify-between items-center hover:bg-[#181717] bg-[#0a0a0a] transition duration-200 ease-in-out">
+                  <div class="border-2 rounded-full w-12 h-12 text-white justify-center items-center flex hover:bg-white hover:text-black cursor-default">
+                    <span class="text-sm">12</span>
+                  </div>
+                  <div class="flex flex-col w-40 ml-3 px-5">
+                    <span class="font-medium text-white">Topic Lorem sjdjd aaa...</span>
+                  </div>
+
+                  <button type="button" class="hover:bg-white px-3 py-1 rounded-full flex items-center justify-center text-white hover:text-black border border-gray-300 hover:border-white transition duration-200 ease-in-out">Join</button>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+
           <div class="rounded-2xl overflow-auto" id="explore">
             {% for user in usersInfo %}
               <div class="my-4">
@@ -68,22 +86,7 @@
               </div>
             {% endfor %}
           </div>
-          <div class="rounded-2xl overflow-auto scroll-m-0 hidden" id="rooms">
-            {% for item in noSocialUser %}
-              <div class="my-4 w-full px-2">
-                <div class="px-3 py-2 rounded-2xl userCard flex justify-between items-center hover:bg-[#181717] bg-[#0a0a0a] transition duration-200 ease-in-out">
-                  <div class="border-2 rounded-full w-12 h-12 text-white justify-center items-center flex hover:bg-white hover:text-black cursor-default">
-                    <span class="text-sm">12</span>
-                  </div>
-                  <div class="flex flex-col w-40 ml-3 px-5">
-                    <span class="font-medium text-white">Topic Lorem sjdjd aaa...</span>
-                  </div>
-
-                  <button type="button" class="hover:bg-white px-3 py-1 rounded-full flex items-center justify-center text-white hover:text-black border border-gray-300 hover:border-white transition duration-200 ease-in-out">Join</button>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
+          
           <div class="rounded-2xl overflow-auto hidden" id="followings">
             {% for item in noSocialUser %}
               <div class="my-4">
@@ -134,50 +137,10 @@
       </div>
       
       <div class="flex flex-col bg-[#0a0a0a] px-4 py-3 w-full md:rounded-l-3xl md:rounded-r-2xl h-full" id="lobby">
-        <div class="text-white font-semibold sticky text-xl">
-          <p># Lorem quaerat neque laboriosam....</p>
-        </div>
-        <div class="flex mt-3 max-h-48 md:max-h-56 lg:max-h-72 h-fit gap-4 overflow-auto hide-scrollbar grid lg:grid-cols-10 md:grid-cols-8 grid-cols-5 rounded-2xl" id="loby">
-          {% for userIcon in noIcons %}
-            <div name="userIcon" class="flex flex-wrap h-fit relative justify-center">
-              <img class="userIconOutlineNormal w-16 h-16 p-0.5 object-cover sm:w-16 sm:h-16 md:w-20 md:h-20" src="{% static 'images/dp.png' %}" alt="Profile Image" />
-              <div class="absolute rounded-2xl px-2 h-fit w-fit bg-black flex justify-center items-center opacity-25 self-end mb-2 hidden" id="userMenuBtn">
-                <i class="fas fa-ellipsis-h text-2xl text-white"></i>
-              </div>
-              <div name="muteIcon" class="muteIcon absolute my-[28%] rounded-full hidden">
-                <i class="fa-solid fa-volume-xmark text-4xl text-red-600"></i>
-              </div>
-              <div name="userMenu" class="absolute left-12 bottom-0 w-fit opacity-80 z-50 bg-[#181717] rounded-xl shadow-lg hidden">
-                <ul class="">
-                  <li class="px-2 py-2 hover:bg-gray-900 text-white cursor-pointer bg-[#181717] rounded-lg">Mute</li>
-                  <li class="px-2 py-2 hover:bg-gray-900 text-white cursor-pointer bg-[#181717] rounded-lg">Kickout</li>
-                </ul>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-        <div class="text-white mt-2 rounded-xl w-full flex-grow flex" id="chatSection">
-          <div class="rounded-xl px-2 flex flex-col h-full w-full">
-            <div class="flex-grow overflow-auto hide-scrollbar p-2">
-              <div class="mb-2">
-                <!-- Chat messages go here -->
-                <div class="flex items-start mb-4">
-                  <img class="w-10 h-10 rounded-full object-cover mr-4" src="{% static 'images/dp.png' %}" alt="Profile Image" />
-                  <div>
-                    <p class="text-sm font-semibold">User Name</p>
-                    <p class="text-sm">This is a sample message.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="flex-none mt-2">
-              <div class="flex items-center">
-                <input class="w-full bg-transparent text-white rounded-full outline-none py-1.5" type="text" placeholder="Type your message..." />
-                <button class="bg-gray-500 text-white rounded-full ml-2 px-4 py-1.5 hover:bg-gray-700">Send</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% block homeLobby %}{% endblock homeLobby %}
+        
+        {% block roomLobby %}{% endblock roomLobby %}
+        
       </div>
     </div>
   </div>

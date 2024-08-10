@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% load static %}
+{% block homeLobby %}
+<form method="post" action="{% url 'createRoom' roomname='example' %}" class="flex items-center self-center my-auto w-1/2 space-x-2 bg-transparent shadow-md rounded-lg">
+    {% csrf_token %}
+    <input type="text" name="room-name-text" id="roomName" placeholder="Enter room name..." class="flex-grow p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+    {{roomName|json_script:"roomName"}}
+    <button class="bg-blue-500 text-white p-2 rounded-xl hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        Create Room
+    </button>
+</form>
+{% endblock homeLobby %}

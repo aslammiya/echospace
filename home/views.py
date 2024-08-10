@@ -9,6 +9,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 import random, string
 from django.shortcuts import get_object_or_404
+from django.utils.text import slugify
+import emoji
 
 @csrf_protect
 def sign_up(request):
@@ -109,6 +111,22 @@ def saveProfileInfo(request):
         user.save()
     return redirect('/')
 
+
+@login_required(login_url="/login/")
+def home(request):
+    usersInfo = CustomUser.objects.all()
+    context = {'noIcons': range(50),
+               'noSocialUser': range(200),
+               'online': "green",
+               'offline': "red",
+               'name': "Aslam Miya",
+               'username': "@aslammiya",
+               'noOfUsers': 0,
+               'usersInfo': usersInfo,
+               'user': request.user
+               }
+    return render(request, "homeLobby.html", context)
+
 @login_required(login_url="/changePassword/")
 def changePassword(request):
     if request.method == "POST":
@@ -137,17 +155,28 @@ def check_old_password(request):
             return JsonResponse({'valid': False})
     return JsonResponse({'valid': False}, status=400)
 
+def cleanRoomName(room_name):
+    room_name_without_emojis = emoji.replace_emoji(room_name, replace='')
+    safe_room_name = slugify(room_name_without_emojis)
+    return safe_room_name
+
 @login_required(login_url="/login/")
-def home(request):
+def createRoom(request, roomname):
+    if request.method == "POST":
+        roomName = cleanRoomName(request.POST.get('room-name-text'))
+        return redirect(f'/room/{roomName}/')
+    
     usersInfo = CustomUser.objects.all()
-    context = {'noIcons': range(50),
-               'noSocialUser': range(200),
-               'online': "green",
-               'offline': "red",
-               'name': "Aslam Miya",
-               'username': "@aslammiya",
-               'noOfUsers': 0,
-               'usersInfo': usersInfo,
-               'user': request.user
-               }
-    return render(request, "index.html", context)
+    context = {
+        'roomName': roomname,
+        'noIcons': range(50),
+        'noSocialUser': range(200),
+        'online': "green",
+        'offline': "red",
+        'name': "Aslam Miya",
+        'username': "@aslammiya",
+        'noOfUsers': 0,
+        'usersInfo': usersInfo,
+        'user': request.user
+    }
+    return render(request, 'roomLobby.html', context)
