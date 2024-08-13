@@ -1,10 +1,7 @@
-from channels.generic.websocket import AsyncWebsocketConsumer
-import json
+from channels.generic.websocket import AsyncJsonWebsocketConsumer
 from .models import *
-from channels.db import database_sync_to_async
 
-
-class MyAsyncWebsocketConsumer(AsyncWebsocketConsumer):
+class WebsocketConsumer(AsyncJsonWebsocketConsumer):
     async def connect(self):
         self.roomName = self.scope['url_route']['kwargs']['roomname']       
         await self.channel_layer.group_add(
@@ -13,13 +10,12 @@ class MyAsyncWebsocketConsumer(AsyncWebsocketConsumer):
         )
         await self.accept()
 
-    async def receive(self, text_data=None, bytes_data=None):
-        print("Message received from client...", text_data)
-        data = json.loads(text_data)
-        msg = data['msg']
-        userName = data['username']
-        userProfileImage = data['userProfileImage']
-        timeString = data['timeString']
+    async def receive_json(self, content):
+        print("Message received from client...", content)
+        msg = content['msg']
+        userName = content['username']
+        userProfileImage = content['userProfileImage']
+        timeString = content['timeString']
         await self.channel_layer.group_send(
             self.roomName,
             {
@@ -37,12 +33,12 @@ class MyAsyncWebsocketConsumer(AsyncWebsocketConsumer):
         userName = event['username']
         userProfileImage = event['userProfileImage']
         timeString = event['timeString']
-        await self.send(text_data=json.dumps({
+        await self.send_json({
             'timeString': timeString,
             'msg': msg,
             'username': userName,
             'userProfileImage': userProfileImage
-        }))
+        })
 
     async def disconnect(self, close_code):
         print("Websocket disconnected...", close_code)
