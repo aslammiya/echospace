@@ -11,6 +11,9 @@ import random, string
 from django.shortcuts import get_object_or_404
 from django.utils.text import slugify
 import emoji
+from .models import *
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.core.files import File
 
 @csrf_protect
 def sign_up(request):
@@ -74,10 +77,24 @@ def genGuestCred():
             break
     guestUserName = (f"{firstName.lower()}{lastName}")
     password = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+    # image_path = staticfiles_storage.url('/images/dp.png')
+    # # Open the image file and store it as a file object
+    # with open(image_path, 'rb') as image_file:
+    #     profile_image = File(image_file)
+    #     guestUserObject = CustomUser.objects.create(
+    #         first_name=firstName,
+    #         last_name=lastName,
+    #         username=guestUserName,
+    #         profile_image=profile_image
+    #     )
+    #     guestUserObject.set_password(password)
+    #     guestUserObject.save()
+    # profile_image = 'static/images/dp.png'
     guestUserObject = CustomUser.objects.create(
         first_name=firstName,
         last_name=lastName,
         username=guestUserName
+        # profile_image=profile_image
     )
     guestUserObject.set_password(password)
     guestUserObject.save()
@@ -161,15 +178,23 @@ def cleanRoomName(room_name):
     return safe_room_name
 
 @login_required(login_url="/login/")
-def createRoom(request, roomname):
-    if request.method == "POST":
-        roomName = cleanRoomName(request.POST.get('room-name-text'))
-        return redirect(f'/room/{roomName}/')
+def createRoom(request, roomname, status):
+    if request.method == 'POST':
+        roomName = request.POST.get('room-name-text')
+        room = cleanRoomName(request.POST.get('room-name-text'))
+        get_room = Chat.objects.filter(room_name=room)
+        if get_room:
+            return redirect(f'/room/{room}/join/')
+        else:
+            create = Chat.objects.create(room_name=room)
+            if create:
+                return redirect(f'/room/{room}/created/')
     
     usersInfo = CustomUser.objects.all()
     context = {
         'roomName': roomname,
-        'noIcons': range(50),
+        'status': status,
+        'noIcons': range(1),
         'noSocialUser': range(200),
         'online': "green",
         'offline': "red",
