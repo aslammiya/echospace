@@ -99,26 +99,30 @@ window.onload = function() {
             document.querySelector("#chatAppendArea").insertAdjacentHTML('beforeend', chatData);
         } else if (data.type === 'join_message') {
             console.log('User joined:', data);
+            
+                // <div name="userIcon" class="flex flex-wrap h-fit relative justify-center joinedUser" userusername="${data.username}">
+                //     <img class="userIconOutlineNormal w-16 h-16 p-0.5 object-cover sm:w-16 sm:h-16 md:w-20 md:h-20" src="${data.userProfileImage}" alt="Profile Image" />
+                //     <div class="absolute rounded-2xl px-2 h-fit w-fit bg-black flex justify-center items-center opacity-25 self-end mb-2 hidden" id="userMenuBtn">
+                //         <i class="fas fa-ellipsis-h text-2xl text-white"></i>
+                //     </div>
+                //     <div name="muteIcon" class="muteIcon absolute my-[28%] rounded-full hidden">
+                //         <i class="fa-solid fa-volume-xmark text-4xl text-red-600"></i>
+                //     </div>
+                //     <div name="userMenu" class="absolute lefta-12 bottom-0 w-fit opacity-80 z-50 bg-[#181717] rounded-xl shadow-lg hidden">
+                //         <ul class="hidden">
+                //             <li class="px-2 py-2 hover:bg-gray-900 text-white cursor-pointer bg-[#181717] rounded-lg">Mute</li>
+                //             <li class="px-2 py-2 hover:bg-gray-900 text-white cursor-pointer bg-[#181717] rounded-lg">Kickout</li>
+                //         </ul>
+                //     </div>
+                // </div>
 
             const userIconHTML = `
-                <div name="userIcon" class="flex flex-wrap h-fit relative justify-center joinedUser" userusername="${data.username}">
-                    <img class="userIconOutlineNormal w-16 h-16 p-0.5 object-cover sm:w-16 sm:h-16 md:w-20 md:h-20" src="${data.userProfileImage}" alt="Profile Image" />
-                    <div class="absolute rounded-2xl px-2 h-fit w-fit bg-black flex justify-center items-center opacity-25 self-end mb-2 hidden" id="userMenuBtn">
-                        <i class="fas fa-ellipsis-h text-2xl text-white"></i>
-                    </div>
-                    <div name="muteIcon" class="muteIcon absolute my-[28%] rounded-full hidden">
-                        <i class="fa-solid fa-volume-xmark text-4xl text-red-600"></i>
-                    </div>
-                    <div name="userMenu" class="absolute lefta-12 bottom-0 w-fit opacity-80 z-50 bg-[#181717] rounded-xl shadow-lg hidden">
-                        <ul class="hidden">
-                            <li class="px-2 py-2 hover:bg-gray-900 text-white cursor-pointer bg-[#181717] rounded-lg">Mute</li>
-                            <li class="px-2 py-2 hover:bg-gray-900 text-white cursor-pointer bg-[#181717] rounded-lg">Kickout</li>
-                        </ul>
-                    </div>
+                <div class="flex justify-center">
+                    <div class="text-md font-thin">${data.username} joined the chat</div>
                 </div>
             `;
             if (checkUserExists(data.username)) {
-                document.querySelector("#loby").insertAdjacentHTML('beforeend', userIconHTML);
+                document.querySelector("#chatAppendArea").insertAdjacentHTML('beforeend', userIconHTML);
             }
         } else if (data.command === 'offer') {
             if (!isCreated) {

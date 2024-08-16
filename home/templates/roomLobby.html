@@ -36,6 +36,7 @@
     <div class="text-white mt-2 rounded-xl w-full flex-grow flex flex-col h-full" id="chatSection">
       <div class="rounded-xl px-2 flex flex-col flex-grow w-full h-full">
         <div class="flex-grow p-2 overflow-auto hide-scrollbar" id="chatAppendArea">
+          
           <!-- Chat messages go here -->
           {% comment %}
           <div class="flex items-start mb-4">
@@ -49,7 +50,7 @@
         </div>
         <div class="flex-none mt-auto" id="msgInput">
           <form class="flex items-center mb-10">
-            <a href="/leave/{{roomName}}/" class="bg-red-500 text-white rounded-full mr-2 px-4 py-1.5 hover:bg-red-700 inline-block text-center">
+            <a href="/leave/{{roomName}}/{{status}}/" class="bg-red-500 text-white rounded-full mr-2 px-4 py-1.5 hover:bg-red-700 inline-block text-center">
               Leave
           </a>
           

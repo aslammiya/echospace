@@ -199,5 +199,10 @@ def createRoom(request, roomname, status):
     }
     return render(request, 'roomLobby.html', context)
 
-def leaveRoom(request, roomname=None):
+def leaveRoom(request, roomname,status):
+    print(roomname, status)
+    if(status == 'created'):
+        rooms = get_object_or_404(Chat, room_name=roomname) 
+        rooms.delete()
+    
     return redirect('/')
