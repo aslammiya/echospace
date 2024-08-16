@@ -31,6 +31,7 @@ setTimeout(function() {
     let last_name = document.getElementById("last_name");
     name_label.classList.add('hidden');
     document.getElementById('edit_name').style.display = 'none';
+    document.getElementById('change-password-button').style.display = 'none';
     document.querySelector("#name_feild").classList.remove("hidden");
     first_name.removeAttribute('readonly');
     last_name.removeAttribute('readonly');
@@ -41,6 +42,7 @@ function enableFieldUsername(){
     let username_label = document.querySelector("#username_label")
     username_label.classList.add('hidden');
     document.getElementById('edit_username').style.display = 'none';
+    document.getElementById('change-password-button').style.display = 'none';
     document.querySelector("#username").classList.remove("hidden");
     document.querySelector("#username").removeAttribute('readonly');
     document.querySelector("#save-button").classList.remove('hidden');
@@ -53,8 +55,9 @@ function changeProfileImage() {
         if (input.files && input.files[0]) {
         document.querySelector("#save-button").classList.remove('hidden');
         dpEditIcon = document.getElementById('dpEditIcon');
-        dpEditIcon.classList.remove('fa-edit')
-        dpEditIcon.classList.add("fa-check")
+        dpEditIcon.classList.remove('fa-edit');
+        dpEditIcon.classList.add("fa-check");
+        dpEditIcon.classList.add("bg-green-800");
     }
 }
 
