@@ -178,27 +178,27 @@ let exploreTab = document.getElementById('exploreTab');
 exploreTab.addEventListener('click', ()=>{
     exploreTab.classList.add('border-b');
     roomsTab.classList.remove('border-b');
-    followingsTab.classList.remove('border-b');
+    // followingsTab.classList.remove('border-b');
     rooms.classList.add('hidden');
-    followings.classList.add('hidden');
+    // followings.classList.add('hidden');
     explore.classList.remove('hidden');
 });
 
 
-followingsTab.addEventListener('click', ()=>{
-    followingsTab.classList.add('border-b');
-    exploreTab.classList.remove('border-b');
-    roomsTab.classList.remove('border-b');
-    rooms.classList.add('hidden');
-    explore.classList.add('hidden');
-    followings.classList.remove('hidden');
-});
+// followingsTab.addEventListener('click', ()=>{
+//     followingsTab.classList.add('border-b');
+//     exploreTab.classList.remove('border-b');
+//     roomsTab.classList.remove('border-b');
+//     rooms.classList.add('hidden');
+//     explore.classList.add('hidden');
+//     followings.classList.remove('hidden');
+// });
 
 roomsTab.addEventListener('click', ()=>{
     roomsTab.classList.add('border-b');
-    followingsTab.classList.remove('border-b');
+    // followingsTab.classList.remove('border-b');
     exploreTab.classList.remove('border-b');
-    followings.classList.add('hidden');
+    // followings.classList.add('hidden');
     explore.classList.add('hidden');
     rooms.classList.remove('hidden');
 });

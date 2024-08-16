@@ -14,8 +14,8 @@
     <div class="text-white font-semibold sticky text-xl">
       <p id="roomName">#{{roomName}}</p>
     </div>
-    <div class="flex mt-3 max-h-48 md:max-h-56 lg:max-h-72 h-fit gap-4 overflow-auto hide-scrollbar grid lg:grid-cols-10 md:grid-cols-8 grid-cols-5 rounded-2xl" id="loby">
-      {% comment %} {% for userIcon in noIcons %} 
+    {% comment %}<div class="flex mt-3 max-h-48 md:max-h-56 lg:max-h-72 h-fit gap-4 overflow-auto hide-scrollbar grid lg:grid-cols-10 md:grid-cols-8 grid-cols-5 rounded-2xl" id="loby">
+       {% for userIcon in noIcons %} 
         <div name="userIcon" class="flex flex-wrap h-fit relative justify-center">
           <img class="userIconOutlineNormal w-16 h-16 p-0.5 object-cover sm:w-16 sm:h-16 md:w-20 md:h-20" src="{% static 'images/dp.png' %}" alt="Profile Image" />
           <div class="absolute rounded-2xl px-2 h-fit w-fit bg-black flex justify-center items-center opacity-25 self-end mb-2 hidden" id="userMenuBtn">
@@ -31,32 +31,38 @@
             </ul>
           </div>
         </div>
-      {% endfor %} {% endcomment %}
-    </div>
-    <div class="text-white mt-2 rounded-xl w-full flex-grow flex flex-col" id="chatSection">
-      <div class="rounded-xl px-2 flex flex-col w-full h-[30rem] md:h-[15.5rem] lg:h-80">
-        <div class="flex-grow p-2 overflow-auto hide-scrollbar ">
-          <div class="mb-2" id="chatAppendArea">
-            <!-- Chat messages go here -->
-            {% comment %} <div class="flex items-start mb-4">
-              <img class="w-10 h-10 rounded-full object-cover mr-4" src="{% static 'images/dp.png' %}" alt="Profile Image" />
-              <div>
-                <p class="text-sm font-semibold">User Name &nbsp;<span class="font-thin text-xs">08:19</span></p>
-                <p class="text-sm">This is a sample message.</p>
-              </div>
+      {% endfor %} 
+    </div>{% endcomment %}
+    <div class="text-white mt-2 rounded-xl w-full flex-grow flex flex-col h-full" id="chatSection">
+      <div class="rounded-xl px-2 flex flex-col flex-grow w-full h-full">
+        <div class="flex-grow p-2 overflow-auto hide-scrollbar" id="chatAppendArea">
+          <!-- Chat messages go here -->
+          {% comment %}
+          <div class="flex items-start mb-4">
+            <img class="w-10 h-10 rounded-full object-cover mr-4" src="{% static 'images/dp.png' %}" alt="Profile Image" />
+            <div>
+              <p class="text-sm font-semibold">User Name &nbsp;<span class="font-thin text-xs">08:19</span></p>
+              <p class="text-sm">This is a sample message.</p>
             </div>
-             {% endcomment %}
           </div>
+          {% endcomment %}
         </div>
-        <div class="flex-none mt-2">
-          <form class="flex items-center">
+        <div class="flex-none mt-auto" id="msgInput">
+          <form class="flex items-center mb-10">
+            <a href="/leave/{{roomName}}/" class="bg-red-500 text-white rounded-full mr-2 px-4 py-1.5 hover:bg-red-700 inline-block text-center">
+              Leave
+          </a>
+          
             <input id="msgTextInput" class="w-full bg-transparent text-white rounded-full outline-none py-1.5" type="text" placeholder="Type your message..." />
             <input type="submit" id="sendTextMsg" class="bg-gray-500 text-white rounded-full ml-2 px-4 py-1.5 hover:bg-gray-700" value="Send">
           </form>
         </div>
       </div>
     </div>
+    
   </div>
+  <audio id="our_audio" class="hidden"></audio>
+  <audio id="remote_audio" class="hidden"></audio>
   <script>
     const guestProfileImageUrl = "{% static 'images/dp.png' %}";
   </script>

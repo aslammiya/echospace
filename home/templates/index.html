@@ -42,23 +42,23 @@
         </div>
         <div class="flex justify-evenly mb-2" id="tabs">
           <button id="roomsTab" class="text-white hover:text-gray-300 focus:outline-none font-bold">Rooms</button>
-          <button id="exploreTab" class="text-white hover:text-gray-300 focus:outline-none border-b font-bold">Explore</button>
-          <button id="followingsTab" class="text-white hover:text-gray-300 focus:outline-none font-bold">Followings</button>
+          <button id="exploreTab" class="text-white hover:text-gray-300 focus:outline-none border-b font-bold">Users</button>
+          {% comment %} <button id="followingsTab" class="text-white hover:text-gray-300 focus:outline-none font-bold">Followings</button> {% endcomment %}
         </div>
         <div class="px-5 flex-1 overflow-auto" id="tabContent">
           
           <div class="rounded-2xl overflow-auto scroll-m-0 hidden" id="rooms">
-            {% for item in noSocialUser %}
+            {% for room_name in room_names %}
               <div class="my-4 w-full px-2">
                 <div class="px-3 py-2 rounded-2xl userCard flex justify-between items-center hover:bg-[#181717] bg-[#0a0a0a] transition duration-200 ease-in-out">
-                  <div class="border-2 rounded-full w-12 h-12 text-white justify-center items-center flex hover:bg-white hover:text-black cursor-default">
+                  {% comment %} <div class="border-2 rounded-full w-12 h-12 text-white justify-center items-center flex hover:bg-white hover:text-black cursor-default">
                     <span class="text-sm">12</span>
-                  </div>
-                  <div class="flex flex-col w-40 ml-3 px-5">
-                    <span class="font-medium text-white">Topic Lorem sjdjd aaa...</span>
+                  </div> {% endcomment %}
+                  <div class="flex flex-col w-40 ml-1 px-5">
+                    <span class="font-medium text-white">{{room_name}}</span>
                   </div>
 
-                  <button type="button" class="hover:bg-white px-3 py-1 rounded-full flex items-center justify-center text-white hover:text-black border border-gray-300 hover:border-white transition duration-200 ease-in-out">Join</button>
+                  <a href="/room/{{room_name}}/join/"><button type="button" class="hover:bg-white px-3 py-1 rounded-full flex items-center justify-center text-white hover:text-black border border-gray-300 hover:border-white transition duration-200 ease-in-out">Join</button></a>
                 </div>
               </div>
             {% endfor %}
@@ -80,14 +80,14 @@
                     <span class="block font-medium text-gray-100">{{user.first_name}} {{user.last_name}}</span>
                     <span class="block text-gray-500">@{{user.username}}</span>
                   </div>
-                  <div class="w-2 h-2 bg-red-600 rounded-full mr-4"></div>
-                  <button type="button" class="hover:bg-white text-white hover:text-black border border-gray-300 hover:border-white px-3 py-1 rounded-full flex items-center justify-center hover:text-black transition duration-200 ease-in-out"><i class="fas fa-user-plus"></i></button>
+                  {% comment %} <div class="w-2 h-2 bg-red-600 rounded-full mr-4"></div> {% endcomment %}
+                  {% comment %} <button type="button" class="hover:bg-white text-white hover:text-black border border-gray-300 hover:border-white px-3 py-1 rounded-full flex items-center justify-center hover:text-black transition duration-200 ease-in-out"><i class="fas fa-user-plus"></i></button> {% endcomment %}
                 </div>
               </div>
             {% endfor %}
           </div>
           
-          <div class="rounded-2xl overflow-auto hidden" id="followings">
+          {% comment %} <div class="rounded-2xl overflow-auto hidden" id="followings">
             {% for item in noSocialUser %}
               <div class="my-4">
                 <div class="w-full px-3 py-2 rounded-2xl userCard flex justify-between items-center hover:bg-[#181717] bg-[#0a0a0a] transition duration-200 ease-in-out">
@@ -103,7 +103,7 @@
                 </div>
               </div>
             {% endfor %}
-          </div>
+          </div> {% endcomment %}
         </div>
       </div>
     </div>

@@ -16,6 +16,7 @@ urlpatterns = [
     path('changePassword/', changePassword, name='changePassword'),
     path('register/', sign_up, name='register'),
     path('room/<str:roomname>/<str:status>/', createRoom, name='createRoom'),
+    path('leave/<str:roomname>/', leaveRoom, name="leaveRoom"),
     path("__reload__/", include("django_browser_reload.urls")),
     path('', home, name="home"),
 ]

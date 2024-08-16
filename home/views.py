@@ -132,15 +132,12 @@ def saveProfileInfo(request):
 @login_required(login_url="/login/")
 def home(request):
     usersInfo = CustomUser.objects.all()
-    context = {'noIcons': range(50),
-               'noSocialUser': range(200),
-               'online': "green",
-               'offline': "red",
-               'name': "Aslam Miya",
-               'username': "@aslammiya",
-               'noOfUsers': 0,
+    rooms = Chat.objects.all()
+    room_names = [room.room_name for room in rooms]
+    context = {
                'usersInfo': usersInfo,
-               'user': request.user
+               'user': request.user,
+               'room_names': room_names
                }
     return render(request, "homeLobby.html", context)
 
@@ -191,17 +188,16 @@ def createRoom(request, roomname, status):
                 return redirect(f'/room/{room}/created/')
     
     usersInfo = CustomUser.objects.all()
+    rooms = Chat.objects.all()
+    room_names = [room.room_name for room in rooms]
     context = {
         'roomName': roomname,
         'status': status,
-        'noIcons': range(1),
-        'noSocialUser': range(200),
-        'online': "green",
-        'offline': "red",
-        'name': "Aslam Miya",
-        'username': "@aslammiya",
-        'noOfUsers': 0,
         'usersInfo': usersInfo,
-        'user': request.user
+        'user': request.user,
+        'room_names': room_names
     }
     return render(request, 'roomLobby.html', context)
+
+def leaveRoom(request, roomname=None):
+    return redirect('/')
