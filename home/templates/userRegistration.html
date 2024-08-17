@@ -30,9 +30,18 @@ Registration
                 <label for="dp" class="block text-gray-700 font-bold mb-2">Profile Picture</label>
                 <input type="file" id="dp" name="dp" class="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-blue-400" accept="image/*">
             </div>
-            <label for="register" class="block text-gray-500 font-semibold mb-3"><a href="/login">Click here to login</a></label>
+            <label for="login" class="block text-blue-700 font-semibold mb-3 underline"><a href="/login">Click here to login</a></label>
             <button type="submit" class="bg-blue-500 text-white rounded-lg px-4 py-2 w-full font-bold hover:bg-blue-600">Register</button>
         </form>
+        <form action="{% url 'guest_login' %}" method="POST">
+            {% csrf_token %}
+            <div class="inline-flex items-center justify-center w-full px-2">
+              <hr class="w-full h-px my-5 bg-gray-200 border-0 dark:bg-gray-700" />
+              <span class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2">OR</span>
+            </div>
+            <label for="Continue as guest" class="text-gray-700 font-semibold">Continue as a guest</label>
+            <button type="submit" class="bg-gray-500 text-white rounded-lg px-4 py-2 my-3 w-full font-bold hover:bg-gray-600">Guest login</button>
+          </form>
     </div>
 </div>
 <script src="{% static 'js/register.js' %}"></script>

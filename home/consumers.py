@@ -14,7 +14,7 @@ class WebsocketConsumer(AsyncJsonWebsocketConsumer):
         await self.accept()
 
     async def receive_json(self, content):
-        print("Message received from client...", content)
+        # print("Message received from client...", content)
         
         command = content.get('command')
         if command == 'message':
@@ -37,34 +37,6 @@ class WebsocketConsumer(AsyncJsonWebsocketConsumer):
                     'userProfileImage': content.get('userProfileImage')
                 }
             )
-        elif command == 'offer':
-            await self.channel_layer.group_send(
-                self.room_group_name,
-                {
-                    'type': 'offer',
-                    'offer': content.get('offer'),
-                    'room': content.get('room'),
-                }
-            )
-        elif command == 'answer':
-            await self.channel_layer.group_send(
-                self.room_group_name,
-                {
-                    'type': 'answer',
-                    'answer': content.get('answer'),
-                    'room': content.get('room'),
-                }
-            )
-        elif command == 'candidate':
-            await self.channel_layer.group_send(
-                self.room_group_name,
-                {
-                    'type': 'candidate',
-                    'candidate': content.get('candidate'),
-                    'isCreated': content.get('isCreated'),
-                    'room': content.get('room'),
-                }
-            )
 
     async def chat_message(self, event):
         await self.send_json({
@@ -80,28 +52,6 @@ class WebsocketConsumer(AsyncJsonWebsocketConsumer):
             'type': 'join_message',
             'username': event['username'],
             'userProfileImage': event['userProfileImage']
-        })
-
-    async def offer(self, event):
-        await self.send_json({
-            'command': 'offer',
-            'offer': event['offer'],
-            'room': event['room'],
-        })
-
-    async def answer(self, event):
-        await self.send_json({
-            'command': 'answer',
-            'answer': event['answer'],
-            'room': event['room'],
-        })
-
-    async def candidate(self, event):
-        await self.send_json({
-            'command': 'candidate',
-            'candidate': event['candidate'],
-            'isCreated': event['isCreated'],
-            'room': event['room'],
         })
 
     async def disconnect(self, close_code):

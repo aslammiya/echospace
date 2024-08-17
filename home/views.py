@@ -44,7 +44,7 @@ def check_username(request):
         data = json.loads(request.body)
         username = data.get('username')
         user_exists = CustomUser.objects.filter(username=username).exists()
-        print(user_exists)
+        # print(user_exists)
         return JsonResponse({'available': not user_exists})
 
 @csrf_protect
@@ -187,7 +187,7 @@ def createRoom(request, roomname, status):
     return render(request, 'roomLobby.html', context)
 
 def leaveRoom(request, roomname,status):
-    print(roomname, status)
+    # print(roomname, status)
     if(status == 'created'):
         rooms = get_object_or_404(Chat, room_name=roomname) 
         rooms.delete()

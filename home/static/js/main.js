@@ -181,65 +181,40 @@ let exploreTab = document.getElementById('exploreTab');
 exploreTab.addEventListener('click', ()=>{
     exploreTab.classList.add('border-b');
     roomsTab.classList.remove('border-b');
-    // followingsTab.classList.remove('border-b');
     rooms.classList.add('hidden');
-    // followings.classList.add('hidden');
     explore.classList.remove('hidden');
 });
 
-
-// followingsTab.addEventListener('click', ()=>{
-//     followingsTab.classList.add('border-b');
-//     exploreTab.classList.remove('border-b');
-//     roomsTab.classList.remove('border-b');
-//     rooms.classList.add('hidden');
-//     explore.classList.add('hidden');
-//     followings.classList.remove('hidden');
-// });
-
 roomsTab.addEventListener('click', ()=>{
     roomsTab.classList.add('border-b');
-    // followingsTab.classList.remove('border-b');
     exploreTab.classList.remove('border-b');
-    // followings.classList.add('hidden');
     explore.classList.add('hidden');
     rooms.classList.remove('hidden');
 });
 
-// let searchIcon = document.getElementById('searchIcon');
 let searchFeild = document.getElementById('searchFeild');
 let tabs = document.getElementById('tabs');
 let tabContent = document.getElementById('tabContent');
-// searchIcon.addEventListener('click', ()=>{
-//     searchFeild.classList.toggle('hidden');
-//     tabs.classList.toggle('hidden');
-//     tabContent.classList.toggle('hidden');
-// })
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Select all user icons
     const userIcons = document.querySelectorAll("[name='userIcon']");
 
     userIcons.forEach(userIcon => {
         const userMenuBtn = userIcon.querySelector("#userMenuBtn");
         const userMenu = userIcon.querySelector("[name='userMenu']");
 
-        // Show userMenuBtn on hover
         userIcon.addEventListener("mouseenter", () => {
             userMenuBtn.classList.remove("hidden");
         });
 
-        // Hide userMenuBtn when not hovering
         userIcon.addEventListener("mouseleave", () => {
             userMenuBtn.classList.add("hidden");
         });
 
-        // Toggle userMenu on click
         userMenuBtn.addEventListener("click", () => {
             userMenu.classList.toggle("hidden");
         });
 
-        // Hide userMenu when mouse leaves the menu area
         userMenu.addEventListener("mouseleave", () => {
             userMenu.classList.add("hidden");
         });

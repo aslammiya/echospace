@@ -9,7 +9,6 @@
     <div id="leftArea" class="flex z-46 h-screen">
       <div class="relative w-full max-w-sm md:max-w-md inset-0 bg-black z-50 flex flex-col h-full">
         <div class="w-full text-white flex justify-between px-6 items-center py-3">
-          {% comment %} <i class="fas fa-search p-2 rounded-full bg-slate-900 cursor-pointer" id="searchIcon"></i> {% endcomment %}
           <i class="fa-solid fa-arrow-left bg-slate-900 p-2 rounded-full cursor-pointer" id="closeDrawar"></i>
         </div>
         <div class="px-5 overflow-auto hidden" id="searchFeild">
@@ -20,30 +19,25 @@
               <button type="submit" class="text-white absolute end-0.5 hover:bg-white hover:text-gray-900 bottom-0.5 outline-2 bg-gray-600 font-medium rounded-3xl text-sm px-4 py-2">Search</button>
             </div>
             <div class="rounded-2xl overflow-auto" id="">
-              {% comment %} {% for item in noSocialUser %}
-                {% endcomment %}
-                <div class="my-4">
-                  <div class="w-full px-3 py-2 rounded-2xl userCard flex justify-between items-center hover:bg-[#181717] bg-[#0a0a0a] transition duration-200 ease-in-out">
-                    <div class="w-12 h-12">
-                      <img class="rounded-full object-cover" src="{% static 'images/dp.png' %}" alt="Profile Picture" />
-                    </div>
-                    <div class="flex flex-col ml-3 px-5 w-40">
-                      <span class="block font-medium text-gray-100">Aslam Miya</span>
-                      <span class="block text-gray-500">@aslammiya</span>
-                    </div>
-                    <div class="w-2 h-2 bg-red-600 rounded-full mr-4"></div>
-                    <button type="button" class="hover:bg-white text-white hover:text-black border border-gray-300 hover:border-white px-3 py-1 rounded-full flex items-center justify-center hover:text-black transition duration-200 ease-in-out"><i class="fas fa-user-plus"></i></button>
+              <div class="my-4">
+                <div class="w-full px-3 py-2 rounded-2xl userCard flex justify-between items-center hover:bg-[#181717] bg-[#0a0a0a] transition duration-200 ease-in-out">
+                  <div class="w-12 h-12">
+                    <img class="rounded-full object-cover" src="{% static 'images/dp.png' %}" alt="Profile Picture" />
                   </div>
+                  <div class="flex flex-col ml-3 px-5 w-40">
+                    <span class="block font-medium text-gray-100">Aslam Miya</span>
+                    <span class="block text-gray-500">@aslammiya</span>
+                  </div>
+                  <div class="w-2 h-2 bg-red-600 rounded-full mr-4"></div>
+                  <button type="button" class="hover:bg-white text-white hover:text-black border border-gray-300 hover:border-white px-3 py-1 rounded-full flex items-center justify-center hover:text-black transition duration-200 ease-in-out"><i class="fas fa-user-plus"></i></button>
                 </div>
-                {% comment %}
-              {% endfor %} {% endcomment %}
+              </div>
             </div>
           </form>
         </div>
         <div class="flex justify-evenly mb-2" id="tabs">
           <button id="roomsTab" class="text-white hover:text-gray-300 focus:outline-none font-bold">Rooms</button>
           <button id="exploreTab" class="text-white hover:text-gray-300 focus:outline-none border-b font-bold">Users</button>
-          {% comment %} <button id="followingsTab" class="text-white hover:text-gray-300 focus:outline-none font-bold">Followings</button> {% endcomment %}
         </div>
         <div class="px-5 flex-1 overflow-auto" id="tabContent">
           
@@ -51,13 +45,9 @@
             {% for room_name in room_names %}
               <div class="my-4 w-full px-2">
                 <div class="px-3 py-2 rounded-2xl userCard flex justify-between items-center hover:bg-[#181717] bg-[#0a0a0a] transition duration-200 ease-in-out">
-                  {% comment %} <div class="border-2 rounded-full w-12 h-12 text-white justify-center items-center flex hover:bg-white hover:text-black cursor-default">
-                    <span class="text-sm">12</span>
-                  </div> {% endcomment %}
                   <div class="flex flex-col w-40 ml-1 px-5">
                     <span class="font-medium text-white">{{room_name}}</span>
                   </div>
-
                   <a href="/room/{{room_name}}/join/"><button type="button" class="hover:bg-white px-3 py-1 rounded-full flex items-center justify-center text-white hover:text-black border border-gray-300 hover:border-white transition duration-200 ease-in-out">Join</button></a>
                 </div>
               </div>
@@ -80,30 +70,10 @@
                     <span class="block font-medium text-gray-100">{{user.first_name}} {{user.last_name}}</span>
                     <span class="block text-gray-500">@{{user.username}}</span>
                   </div>
-                  {% comment %} <div class="w-2 h-2 bg-red-600 rounded-full mr-4"></div> {% endcomment %}
-                  {% comment %} <button type="button" class="hover:bg-white text-white hover:text-black border border-gray-300 hover:border-white px-3 py-1 rounded-full flex items-center justify-center hover:text-black transition duration-200 ease-in-out"><i class="fas fa-user-plus"></i></button> {% endcomment %}
                 </div>
               </div>
             {% endfor %}
           </div>
-          
-          {% comment %} <div class="rounded-2xl overflow-auto hidden" id="followings">
-            {% for item in noSocialUser %}
-              <div class="my-4">
-                <div class="w-full px-3 py-2 rounded-2xl userCard flex justify-between items-center hover:bg-[#181717] bg-[#0a0a0a] transition duration-200 ease-in-out">
-                  <div class="w-12 h-12">
-                    <img class="rounded-full object-cover" src="{% static 'images/dp.png' %}" alt="Profile Picture" />
-                  </div>
-                  <div class="flex flex-col ml-3 px-5 w-40">
-                    <span class="block font-medium text-gray-100">Aslam Miya</span>
-                    <span class="block text-gray-500">@aslammiya</span>
-                  </div>
-                  <div class="w-2 h-2 bg-green-600 rounded-full mr-4"></div>
-                  <button type="button" class="hover:bg-white text-white hover:text-black border border-gray-300 hover:border-white px-3 py-1 rounded-full flex items-center justify-center hover:text-black transition duration-200 ease-in-out"><i class="fas fa-user-plus"></i></button>
-                </div>
-              </div>
-            {% endfor %}
-          </div> {% endcomment %}
         </div>
       </div>
     </div>
