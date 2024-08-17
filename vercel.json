@@ -6,6 +6,5 @@
         "src": "core/asgi.py",
         "use": "@vercel/python"
       }
-    ],
-    "buildCommand": "pip install -r requirements.txt"
+    ]
 }
