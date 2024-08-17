@@ -7,6 +7,5 @@
         "use": "@vercel/python"
       }
     ],
-    "regions": ["pdx1"],
     "buildCommand": "pip install -r requirements.txt"
 }
