@@ -8,8 +8,8 @@
       }
     ],
     "env": {
-      "SECRET_KEY": "@secret_key",
-      "REDIS_URL": "@redis_url"
+      "SECRET_KEY": "@SECRET_KEY",
+      "REDIS_URL": "@REDIS_URL"
     },
     "regions": ["pdx1"],
     "buildCommand": "pip install -r requirements.txt"
