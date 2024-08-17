@@ -206,15 +206,15 @@ roomsTab.addEventListener('click', ()=>{
     rooms.classList.remove('hidden');
 });
 
-let searchIcon = document.getElementById('searchIcon');
+// let searchIcon = document.getElementById('searchIcon');
 let searchFeild = document.getElementById('searchFeild');
 let tabs = document.getElementById('tabs');
 let tabContent = document.getElementById('tabContent');
-searchIcon.addEventListener('click', ()=>{
-    searchFeild.classList.toggle('hidden');
-    tabs.classList.toggle('hidden');
-    tabContent.classList.toggle('hidden');
-})
+// searchIcon.addEventListener('click', ()=>{
+//     searchFeild.classList.toggle('hidden');
+//     tabs.classList.toggle('hidden');
+//     tabContent.classList.toggle('hidden');
+// })
 
 document.addEventListener("DOMContentLoaded", function() {
     // Select all user icons

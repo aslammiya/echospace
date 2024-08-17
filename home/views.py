@@ -77,24 +77,11 @@ def genGuestCred():
             break
     guestUserName = (f"{firstName.lower()}{lastName}")
     password = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
-    # image_path = staticfiles_storage.url('/images/dp.png')
-    # # Open the image file and store it as a file object
-    # with open(image_path, 'rb') as image_file:
-    #     profile_image = File(image_file)
-    #     guestUserObject = CustomUser.objects.create(
-    #         first_name=firstName,
-    #         last_name=lastName,
-    #         username=guestUserName,
-    #         profile_image=profile_image
-    #     )
-    #     guestUserObject.set_password(password)
-    #     guestUserObject.save()
-    # profile_image = 'static/images/dp.png'
+
     guestUserObject = CustomUser.objects.create(
         first_name=firstName,
         last_name=lastName,
         username=guestUserName
-        # profile_image=profile_image
     )
     guestUserObject.set_password(password)
     guestUserObject.save()
