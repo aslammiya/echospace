@@ -16,8 +16,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '*']
 
-ALLOWED_HOSTS = ['.render.com', 'echospace.onrender.com']
-CSRF_TRUSTED_ORIGINS = ['https://echospace.onrender.com']
+# ALLOWED_HOSTS = ['.render.com', 'echospace.onrender.com']
+# CSRF_TRUSTED_ORIGINS = ['https://echospace.onrender.com']
 
 # Application definition
 
