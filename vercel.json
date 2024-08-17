@@ -1,0 +1,17 @@
+{
+    "version": 2,
+    "name": "echospace",
+    "builds": [
+      {
+        "src": "core/asgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "env": {
+      "SECRET_KEY": "@secret_key",
+      "REDIS_URL": "@redis_url"
+    },
+    "regions": ["pdx1"],
+    "buildCommand": "pip install -r requirements.txt",
+    "startCommand": "daphne -b 0.0.0.0 -p 8556 core.asgi:application"
+}
