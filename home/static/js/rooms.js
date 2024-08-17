@@ -143,67 +143,67 @@ window.onload = function() {
         console.log("WebSocket closed");
     };
 
-    function createOffer() {
-        rtcpeerconnection = new RTCPeerConnection(iceServers);
-        rtcpeerconnection.onicecandidate = onIceCandidate;
-        rtcpeerconnection.ontrack = onTrack;
+    // function createOffer() {
+    //     rtcpeerconnection = new RTCPeerConnection(iceServers);
+    //     rtcpeerconnection.onicecandidate = onIceCandidate;
+    //     rtcpeerconnection.ontrack = onTrack;
 
-        stream.getTracks().forEach((track) => {
-            rtcpeerconnection.addTrack(track, stream);
-        });
+    //     stream.getTracks().forEach((track) => {
+    //         rtcpeerconnection.addTrack(track, stream);
+    //     });
 
-        rtcpeerconnection.createOffer()
-            .then(offer => {
-                rtcpeerconnection.setLocalDescription(offer);
-                ws.send(JSON.stringify({
-                    command: 'offer',
-                    offer: offer,
-                    room: roomName
-                }));
-            });
-    }
+    //     rtcpeerconnection.createOffer()
+    //         .then(offer => {
+    //             rtcpeerconnection.setLocalDescription(offer);
+    //             ws.send(JSON.stringify({
+    //                 command: 'offer',
+    //                 offer: offer,
+    //                 room: roomName
+    //             }));
+    //         });
+    // }
 
-    function createAnswer(offer) {
-        rtcpeerconnection = new RTCPeerConnection(iceServers);
-        rtcpeerconnection.onicecandidate = onIceCandidate;
-        rtcpeerconnection.ontrack = onTrack;
-        // onTrack
-        print("CREATING OFFFER")
-        rtcpeerconnection.setRemoteDescription(new RTCSessionDescription(offer));
-        stream.getTracks().forEach((track) => {
-            print("THIS IS STREAMS ", track, stream)
-            rtcpeerconnection.addTrack(track, stream);
-        });
+    // function createAnswer(offer) {
+    //     rtcpeerconnection = new RTCPeerConnection(iceServers);
+    //     rtcpeerconnection.onicecandidate = onIceCandidate;
+    //     rtcpeerconnection.ontrack = onTrack;
+    //     // onTrack
+    //     print("CREATING OFFFER")
+    //     rtcpeerconnection.setRemoteDescription(new RTCSessionDescription(offer));
+    //     stream.getTracks().forEach((track) => {
+    //         print("THIS IS STREAMS ", track, stream)
+    //         rtcpeerconnection.addTrack(track, stream);
+    //     });
 
-        rtcpeerconnection.createAnswer()
-            .then(answer => {
-                rtcpeerconnection.setLocalDescription(answer);
-                ws.send(JSON.stringify({
-                    command: 'answer',
-                    answer: answer,
-                    room: roomName
-                }));
-            });
-    }
+    //     rtcpeerconnection.createAnswer()
+    //         .then(answer => {
+    //             rtcpeerconnection.setLocalDescription(answer);
+    //             ws.send(JSON.stringify({
+    //                 command: 'answer',
+    //                 answer: answer,
+    //                 room: roomName
+    //             }));
+    //         });
+    // }
 
-    function onIceCandidate(event) {
-        if (event.candidate) {
-            ws.send(JSON.stringify({
-                command: 'candidate',
-                candidate: event.candidate,
-                isCreated: isCreated,
-                room: roomName
-            }));
-        }
-    }
+    // function onIceCandidate(event) {
+    //     if (event.candidate) {
+    //         ws.send(JSON.stringify({
+    //             command: 'candidate',
+    //             candidate: event.candidate,
+    //             isCreated: isCreated,
+    //             room: roomName
+    //         }));
+    //     }
+    // }
 
-    function onTrack(event) {
-        if (event.streams[0].id !== stream.id) {
-            let remote_audio = document.getElementById('remote_audio');
-            remote_audio.srcObject = event.streams[0];
-            remote_audio.play();
-        }
-    }
+    // function onTrack(event) {
+    //     if (event.streams[0].id !== stream.id) {
+    //         let remote_audio = document.getElementById('remote_audio');
+    //         remote_audio.srcObject = event.streams[0];
+    //         remote_audio.play();
+    //     }
+    // }
     
 
     document.getElementById("sendTextMsg").onclick = function(event) {
