@@ -12,8 +12,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.text import slugify
 import emoji
 from .models import *
-from django.contrib.staticfiles.storage import staticfiles_storage
-from django.core.files import File
+import os
 
 @csrf_protect
 def sign_up(request):
@@ -111,7 +110,11 @@ def saveProfileInfo(request):
         user.last_name = lastName
         user.username = username
         if request.FILES.get("dp"):
+            if user.profile_image and os.path.exists(user.profile_image.path):
+                os.remove(user.profile_image.path)
+            
             user.profile_image = request.FILES.get("dp")
+
         user.save()
     return redirect('/')
 
