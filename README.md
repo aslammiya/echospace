@@ -1,6 +1,7 @@
 # echoSpace
 
-A web application built with Django Channels, Tailwind CSS, and WebSocket, allowing users to create accounts, join rooms, and chat in real-time.
+**echoSpace** is a web application built with Django Channels, Tailwind CSS, and WebSocket, allowing users to create accounts, join rooms and chat in real-time.
+
 
 ## Features
 
@@ -34,44 +35,52 @@ A web application built with Django Channels, Tailwind CSS, and WebSocket, allow
   <img src="media/screenshots/ds_2.png" alt="Thumbnail 1" style="width: 47%; height: auto; border: 1px solid #ddd; border-radius: 5px;">
   <img src="media/screenshots/ds_3.png" alt="Thumbnail 3" style="width: 47%; height: auto; border: 1px solid #ddd; border-radius: 5px;">
 </div>
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5%; margin-top:20px">
-  <img src="media/screenshots/ds_5.png" alt="Thumbnail 1" style="width: 47%; height: auto; border: 1px solid #ddd; border-radius: 5px;">
-  <img src="media/screenshots/ds_6.png" alt="Thumbnail 3" style="width: 47%; height: auto; border: 1px solid #ddd; border-radius: 5px;">
-</div>
+
+## Installation
 
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/your-repository.git
-   cd your-repository
+   git clone https://github.com/aslammiya/echospace
+   cd echospace
    ```
 
 2. **Set Up Virtual Environment**
 
    ```bash
    python3 -m venv env
+   ```
+3. **Activate Virtual Environment**
+
+   ```bash
    source env/bin/activate
    ```
 
-3. **Install Dependencies**
+4. **Start Redis Server**
+
+   ```bash
+   redis-server
+   ```
+
+4. **Install Dependencies**
 
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Set Up Database**
+5. **Set Up Database**
 
    ```bash
    ./manage.py migrate
    ```
 
-5. **Create Superuser**
+6. **Create Superuser (Optional)**
 
    ```bash
    ./manage.py createsuperuser
    ```
 
-6. **Configure Redis**
+7. **Configure Redis**
 
    - **For Local Development**: Uncomment the following lines in `core/settings.py` and comment out the `REDIS_URL` section.
 
@@ -86,7 +95,7 @@ A web application built with Django Channels, Tailwind CSS, and WebSocket, allow
      }
      ```
 
-   - **For Production**: Uncomment the `REDIS_URL` line and comment out the local configuration.
+   - **For Production**: If you are using a Redis cloud service, `uncomment` the `REDIS_URL` line and comment out the local configuration.
 
      ```python
      REDIS_URL = os.environ.get('REDIS_URL')
@@ -101,27 +110,31 @@ A web application built with Django Channels, Tailwind CSS, and WebSocket, allow
      }
      ```
 
-   Set the `REDIS_URL` environment variable to your Redis instance URL in production environments like Heroku or Render. Example:
+   Set the `REDIS_URL` `environment variable` to your Redis instance URL in production environments like `Heroku` or `Render`.
+
+    Alternatively, you can use:
 
    ```bash
-   export REDIS_URL="redis://:your_redis_password@your_redis_host:port/0"
+   REDIS_URL="redis://:your_redis_password@your_redis_host:port/0"
    ```
-
-7. **Run the Application**
+    For detailed instructions on setting up Redis Cloud, refer to the [Redis Cloud Quickstart Guide.](https://redis.io/docs/latest/operate/rc/rc-quickstart/)
+8. **Start Django-tailwind**
 
    ```bash
-   daphne -b 0.0.0.0 -p 8789 core.asgi:application
+   ./manage.py tailwind start
    ```
 
-   Or with Gunicorn:
+9. **Run the Application**
 
    ```bash
-   gunicorn -k daphne -b 0.0.0.0:8000 core.asgi:application
+   daphne -b 0.0.0.0 -p 8000 core.asgi:application
    ```
+
+   Alternatively, you can use: `unicorn`
 
 ## Usage
 
-- **Access the Web App**: Open your browser and navigate to `http://localhost:8789` (or the port you specified).
+- **Access the Web App**: Open your browser and navigate to `http://localhost:8000` (or the port you specified).
 - **Log In / Register**: Use the provided forms to create an account or log in.
 - **Create / Join Rooms**: Use the left-side panel to manage and join voice rooms.
 - **Chat in Rooms**: Communicate with other users in the same room.
@@ -129,11 +142,3 @@ A web application built with Django Channels, Tailwind CSS, and WebSocket, allow
 ## Contributing
 
 Feel free to submit issues or pull requests. Contributions are welcome!
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-Replace placeholders like `https://github.com/yourusername/your-repository.git` with your actual repository URL. Adjust any specifics as needed for your project.
