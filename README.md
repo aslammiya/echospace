@@ -139,6 +139,75 @@
 - **Create / Join Rooms**: Use the left-side panel to manage and join voice rooms.
 - **Chat in Rooms**: Communicate with other users in the same room.
 
+## Project Structure
+├── core
+│   ├── asgi.py
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── db.sqlite3
+├── home
+│   ├── admin.py
+│   ├── apps.py
+│   ├── consumers.py
+│   ├── __init__.py
+│   ├── migrations
+│   ├── models.py
+│   ├── routing.py
+│   ├── static
+│   │   ├── css
+│   │   │   └── style.css
+│   │   ├── favicon.ico
+│   │   ├── images
+│   │   │   ├── dp.png
+│   │   │   ├── github.png
+│   │   │   ├── insta.png
+│   │   │   └── linkdin.png
+│   │   └── js
+│   │       ├── main.js
+│   │       ├── register.js
+│   │       └── rooms.js
+│   ├── templates
+│   │   ├── base.html
+│   │   ├── homeLobby.html
+│   │   ├── index.html
+│   │   ├── loginUser.html
+│   │   ├── roomLobby.html
+│   │   └── userRegistration.html
+│   ├── tests.py
+│   └── views.py
+├── manage.py
+├── media
+│   ├── profile_pictures
+│   │   ├── 
+│   └── screenshots
+│       ├── ds_1.png
+│       ├── ds_2.png
+│       ├── ds_3.png
+│       ├── ds_5.png
+│       ├── ds_6.png
+│       ├── ph_1.png
+│       ├── ph_2.png
+│       ├── ph_3.png
+│       ├── ph_4.png
+│       ├── ph_5.png
+│       └── ph_6.png
+├── staticfiles
+│   ├── 
+├── theme
+│   ├── 
+├── node_modules
+│   ├── 
+├── package.json
+├── package-lock.json
+├── README.md
+├── render.yaml
+├── requirements.txt
+├── runserver.log
+└── tailwind.log
+
+
 ## Contributing
 
 Feel free to submit issues or pull requests. Contributions are welcome!
