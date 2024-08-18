@@ -57,10 +57,10 @@
    ```
 
 4. **Start Redis Server**
-
    ```bash
    redis-server
    ```
+   **For detailed instructions on setting up Redis, refer to the [Install Redis on Linux, macOS, and Window.](https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/)**
 
 4. **Install Dependencies**
 
@@ -117,7 +117,7 @@
    ```bash
    REDIS_URL="redis://:your_redis_password@your_redis_host:port/0"
    ```
-    For detailed instructions on setting up Redis Cloud, refer to the [Redis Cloud Quickstart Guide.](https://redis.io/docs/latest/operate/rc/rc-quickstart/)
+    **For detailed instructions on setting up Redis Cloud, refer to the [Redis Cloud Quickstart Guide.](https://redis.io/docs/latest/operate/rc/rc-quickstart/)**
 8. **Start Django-tailwind**
 
    ```bash
