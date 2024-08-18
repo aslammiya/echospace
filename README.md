@@ -140,6 +140,7 @@
 - **Chat in Rooms**: Communicate with other users in the same room.
 
 ## Project Structure
+```
 ├── core
 │   ├── asgi.py
 │   ├── __init__.py
@@ -206,7 +207,7 @@
 ├── requirements.txt
 ├── runserver.log
 └── tailwind.log
-
+```
 
 ## Contributing
 
