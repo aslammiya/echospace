@@ -19,21 +19,24 @@ A web application built with Django Channels, Tailwind CSS, and WebSocket, allow
 - **Redis**: Caching layer for frequently accessed data. 
 - **Development Tools**: Postman
 ## Screenshots
-<!-- Main Image Display -->
 <div style="text-align: center; margin-bottom: 20px;">
   <img src="media/screenshots/ds_1.png" alt="Main Screenshot" style="height: auto;">
 </div>
-
-<!-- Thumbnail Images -->
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
-  <img src="media/screenshots/ph_1.png" alt="Thumbnail 1" style="width: 130px; height: auto;">
-  <img src="media/screenshots/ph_2.png" alt="Thumbnail 3" style="width: 130px; height: auto;">
-  <img src="media/screenshots/ph_3.png" alt="Thumbnail 5" style="width: 130px; height: auto;">
-  <img src="media/screenshots/ph_5.png" alt="Thumbnail 5" style="width: 130px; height: auto;">
-  <img src="media/screenshots/ph_6.png" alt="Thumbnail 5" style="width: 130px; height: auto;">
+<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px;">
+  <img src="media/screenshots/ph_1.png" alt="Thumbnail 1" style="width: 15%; height: auto;">
+  <img src="media/screenshots/ph_2.png" alt="Thumbnail 3" style="width: 15%; height: auto;">
+  <img src="media/screenshots/ph_3.png" alt="Thumbnail 5" style="width: 15%; height: auto;">
+  <img src="media/screenshots/ph_5.png" alt="Thumbnail 5" style="width: 15%; height: auto;">
+  <img src="media/screenshots/ph_6.png" alt="Thumbnail 5" style="width: 15%; height: auto;">
 
 </div>
-## Installation
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top:20px">
+  <img src="media/screenshots/ds_2.png" alt="Thumbnail 1" style="width: 46%; height: auto;">
+  <img src="media/screenshots/ds_3.png" alt="Thumbnail 3" style="width: 46%; height: auto;">
+</div>
+<style>
+    
+</style>
 
 1. **Clone the Repository**
 
