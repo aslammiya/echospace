@@ -20,7 +20,7 @@ A web application built with Django Channels, Tailwind CSS, and WebSocket, allow
 - **Development Tools**: Postman
 ## Screenshots
 <div style="text-align: center; margin-bottom: 20px;">
-  <img src="media/screenshots/ds_1.png" alt="Main Screenshot" style="height: auto; width:90%; border: 1px solid #ddd; border-radius: 5px;">
+  <img src="media/screenshots/ds_1.png" alt="Main Screenshot" style="height: auto; width:95%; border: 1px solid #ddd; border-radius: 5px;">
 </div>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 5%;">
   <img src="media/screenshots/ph_1.png" alt="Thumbnail 1" style="width: 18%; height: auto; border: 1px solid #ddd; border-radius: 5px; ">
