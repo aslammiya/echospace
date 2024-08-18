@@ -20,7 +20,7 @@ A web application built with Django Channels, Tailwind CSS, and WebSocket, allow
 - **Development Tools**: Postman
 ## Screenshots
 <div style="text-align: center; margin-bottom: 20px;">
-  <img src="media/screenshots/ds_1.png" alt="Main Screenshot" style="height: auto; border: 1px solid #ddd; border-radius: 5px;">
+  <img src="media/screenshots/ds_1.png" alt="Main Screenshot" style="height: auto; width:90%; border: 1px solid #ddd; border-radius: 5px;">
 </div>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 5%;">
   <img src="media/screenshots/ph_1.png" alt="Thumbnail 1" style="width: 18%; height: auto; border: 1px solid #ddd; border-radius: 5px; ">
@@ -33,6 +33,10 @@ A web application built with Django Channels, Tailwind CSS, and WebSocket, allow
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5%; margin-top:20px">
   <img src="media/screenshots/ds_2.png" alt="Thumbnail 1" style="width: 47%; height: auto; border: 1px solid #ddd; border-radius: 5px;">
   <img src="media/screenshots/ds_3.png" alt="Thumbnail 3" style="width: 47%; height: auto; border: 1px solid #ddd; border-radius: 5px;">
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5%; margin-top:20px">
+  <img src="media/screenshots/ds_5.png" alt="Thumbnail 1" style="width: 47%; height: auto; border: 1px solid #ddd; border-radius: 5px;">
+  <img src="media/screenshots/ds_6.png" alt="Thumbnail 3" style="width: 47%; height: auto; border: 1px solid #ddd; border-radius: 5px;">
 </div>
 
 1. **Clone the Repository**
