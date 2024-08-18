@@ -157,7 +157,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # }
 
 
-REDIS_URL = os.environ.get('REDIS_URL', 'redis://:pAP3CYCBpVboHMYajvh1te3SvzwFHQ3K@redis-14190.c330.asia-south1-1.gce.redns.redis-cloud.com:14190/0')
+REDIS_URL = os.environ.get('REDIS_URL')
 
 CHANNEL_LAYERS = {
     "default": {
