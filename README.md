@@ -18,21 +18,36 @@ A web application built with Django Channels, Tailwind CSS, and WebSocket, allow
 - **Database**: SQLite3
 - **Redis**: Caching layer for frequently accessed data. 
 - **Development Tools**: Postman
+
 ## Screenshots
 
-<div style="display: flex; justify-content: center; overflow-x: auto; white-space: nowrap; padding: 20px; background-color: #f8f9fa;">
-  <img src="media/screenshots/ds_1.png" alt="Desktop Screenshot 1" style="width: 500px; margin-right: 20px;">
-  <img src="media/screenshots/ph_1.png" alt="Mobile Screenshot 1" style="width: 300px; margin-right: 20px;">
-  <img src="media/screenshots/ds_2.png" alt="Desktop Screenshot 2" style="width: 500px; margin-right: 20px;">
-  <img src="media/screenshots/ph_2.png" alt="Mobile Screenshot 2" style="width: 300px; margin-right: 20px;">
-  <img src="media/screenshots/ds_3.png" alt="Desktop Screenshot 3" style="width: 500px; margin-right: 20px;">
-  <img src="media/screenshots/ph_3.png" alt="Mobile Screenshot 3" style="width: 300px; margin-right: 20px;">
-  <img src="media/screenshots/ph_4.png" alt="Mobile Screenshot 4" style="width: 300px; margin-right: 20px;">
-  <img src="media/screenshots/ds_5.png" alt="Desktop Screenshot 5" style="width: 500px; margin-right: 20px;">
-  <img src="media/screenshots/ph_5.png" alt="Mobile Screenshot 5" style="width: 300px; margin-right: 20px;">
-  <img src="media/screenshots/ds_6.png" alt="Desktop Screenshot 6" style="width: 500px; margin-right: 20px;">
-  <img src="media/screenshots/ph_6.png" alt="Mobile Screenshot 6" style="width: 300px; margin-right: 20px;">
+<div class="carousel" style="max-width: 100%; overflow: hidden;">
+  <div class="carousel-track-container" style="display: flex; transition: transform 0.5s ease-in-out;">
+    <img src="media/screenshots/ds_1.png" alt="Desktop Screenshot 1" style="width: 100%; max-width: 500px; object-fit: contain; margin-right: 10px;">
+    <img src="media/screenshots/ph_1.png" alt="Mobile Screenshot 1" style="width: 100%; max-width: 300px; object-fit: contain; margin-right: 10px;">
+    <img src="media/screenshots/ds_2.png" alt="Desktop Screenshot 2" style="width: 100%; max-width: 500px; object-fit: contain; margin-right: 10px;">
+    <!-- Add more images as needed -->
+  </div>
+  <div class="carousel-pagination" style="text-align: center; margin-top: 10px;">
+    <span class="carousel-dot" style="display: inline-block; width: 10px; height: 10px; background-color: #bbb; border-radius: 50%; margin: 0 5px; cursor: pointer;" onclick="showSlide(0)"></span>
+    <span class="carousel-dot" style="display: inline-block; width: 10px; height: 10px; background-color: #bbb; border-radius: 50%; margin: 0 5px; cursor: pointer;" onclick="showSlide(1)"></span>
+    <span class="carousel-dot" style="display: inline-block; width: 10px; height: 10px; background-color: #bbb; border-radius: 50%; margin: 0 5px; cursor: pointer;" onclick="showSlide(2)"></span>
+    <!-- Add more dots as needed -->
+  </div>
 </div>
+
+<script>
+  const slides = document.querySelector('.carousel-track-container');
+  const dots = document.querySelectorAll('.carousel-dot');
+
+  function showSlide(index) {
+    const slideWidth = slides.children[0].clientWidth;
+    slides.style.transform = `translateX(${-slideWidth * index}px)`;
+    dots.forEach(dot => dot.style.backgroundColor = '#bbb');
+    dots[index].style.backgroundColor = '#717171';
+  }
+</script>
+
 
 ## Installation
 
