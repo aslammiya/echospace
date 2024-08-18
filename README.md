@@ -18,37 +18,21 @@ A web application built with Django Channels, Tailwind CSS, and WebSocket, allow
 - **Database**: SQLite3
 - **Redis**: Caching layer for frequently accessed data. 
 - **Development Tools**: Postman
-
 ## Screenshots
-<div style="max-width: 600px; position: relative; margin: auto;">
-  <img src="media/screenshots/ds_1.png" style="width: 100%; display: none;" />
-  <img src="media/screenshots/ds_2.png" style="width: 100%; display: none;" />
-  <img src="media/screenshots/ph_1.png" style="width: 100%; display: none;" />
-  <div style="position: absolute; bottom: 8px; left: 16px; color: white;">
-    <span id="caption"></span>
-  </div>
+<!-- Main Image Display -->
+<div style="text-align: center; margin-bottom: 20px;">
+  <img src="media/screenshots/ds_1.png" alt="Main Screenshot" style="height: auto;">
 </div>
 
-<script>
-  let index = 0;
-  const images = document.querySelectorAll('img');
-  const caption = document.getElementById('caption');
-  
-  function showSlides() {
-    if (index >= images.length) { index = 0 }
-    for (let i = 0; i < images.length; i++) {
-      images[i].style.display = "none";  
-    }
-    images[index].style.display = "block";  
-    caption.innerHTML = "Image " + (index + 1);
-    index++;
-    setTimeout(showSlides, 2000); // Change image every 2 seconds
-  }
-  showSlides();
-</script>
+<!-- Thumbnail Images -->
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+  <img src="media/screenshots/ph_1.png" alt="Thumbnail 1" style="width: 130px; height: auto;">
+  <img src="media/screenshots/ph_2.png" alt="Thumbnail 3" style="width: 130px; height: auto;">
+  <img src="media/screenshots/ph_3.png" alt="Thumbnail 5" style="width: 130px; height: auto;">
+  <img src="media/screenshots/ph_5.png" alt="Thumbnail 5" style="width: 130px; height: auto;">
+  <img src="media/screenshots/ph_6.png" alt="Thumbnail 5" style="width: 130px; height: auto;">
 
-
-
+</div>
 ## Installation
 
 1. **Clone the Repository**
