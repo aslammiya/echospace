@@ -20,33 +20,33 @@ A web application built with Django Channels, Tailwind CSS, and WebSocket, allow
 - **Development Tools**: Postman
 
 ## Screenshots
-
-<div class="carousel" style="max-width: 100%; overflow: hidden;">
-  <div class="carousel-track-container" style="display: flex; transition: transform 0.5s ease-in-out;">
-    <img src="media/screenshots/ds_1.png" alt="Desktop Screenshot 1" style="width: 100%; max-width: 500px; object-fit: contain; margin-right: 10px;">
-    <img src="media/screenshots/ph_1.png" alt="Mobile Screenshot 1" style="width: 100%; max-width: 300px; object-fit: contain; margin-right: 10px;">
-    <img src="media/screenshots/ds_2.png" alt="Desktop Screenshot 2" style="width: 100%; max-width: 500px; object-fit: contain; margin-right: 10px;">
-    <!-- Add more images as needed -->
-  </div>
-  <div class="carousel-pagination" style="text-align: center; margin-top: 10px;">
-    <span class="carousel-dot" style="display: inline-block; width: 10px; height: 10px; background-color: #bbb; border-radius: 50%; margin: 0 5px; cursor: pointer;" onclick="showSlide(0)"></span>
-    <span class="carousel-dot" style="display: inline-block; width: 10px; height: 10px; background-color: #bbb; border-radius: 50%; margin: 0 5px; cursor: pointer;" onclick="showSlide(1)"></span>
-    <span class="carousel-dot" style="display: inline-block; width: 10px; height: 10px; background-color: #bbb; border-radius: 50%; margin: 0 5px; cursor: pointer;" onclick="showSlide(2)"></span>
-    <!-- Add more dots as needed -->
+<div style="max-width: 600px; position: relative; margin: auto;">
+  <img src="media/screenshots/ds_1.png" style="width: 100%; display: none;" />
+  <img src="media/screenshots/ds_2.png" style="width: 100%; display: none;" />
+  <img src="media/screenshots/ph_1.png" style="width: 100%; display: none;" />
+  <div style="position: absolute; bottom: 8px; left: 16px; color: white;">
+    <span id="caption"></span>
   </div>
 </div>
 
 <script>
-  const slides = document.querySelector('.carousel-track-container');
-  const dots = document.querySelectorAll('.carousel-dot');
-
-  function showSlide(index) {
-    const slideWidth = slides.children[0].clientWidth;
-    slides.style.transform = `translateX(${-slideWidth * index}px)`;
-    dots.forEach(dot => dot.style.backgroundColor = '#bbb');
-    dots[index].style.backgroundColor = '#717171';
+  let index = 0;
+  const images = document.querySelectorAll('img');
+  const caption = document.getElementById('caption');
+  
+  function showSlides() {
+    if (index >= images.length) { index = 0 }
+    for (let i = 0; i < images.length; i++) {
+      images[i].style.display = "none";  
+    }
+    images[index].style.display = "block";  
+    caption.innerHTML = "Image " + (index + 1);
+    index++;
+    setTimeout(showSlides, 2000); // Change image every 2 seconds
   }
+  showSlides();
 </script>
+
 
 
 ## Installation
