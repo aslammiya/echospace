@@ -2,6 +2,13 @@
 
 **echoSpace** is a web application built with Django Channels, Tailwind CSS, and WebSocket, allowing users to create accounts, join rooms and chat in real-time.
 
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Upcoming Features](#upcoming-features)
+- [Screenshots](#screenshots)
+- [Installation](#Installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
 
 ## Features
 
@@ -19,6 +26,13 @@
 - **Database**: SQLite3
 - **Redis**: Caching layer for frequently accessed data. 
 - **Development Tools**: Postman
+
+## Upcoming Features
+
+- **Voice Room Feature**: Implementation using WebRTC to enable real-time voice communication within rooms.
+- **Message Notifications**: Planning to implement real-time notifications using Django Channels and WebSocket, allowing users to receive alerts for new messages.
+- **UI Improvements**: Enhancing the user interface using React.js for a more dynamic and responsive experience.
+
 ## Screenshots
 <div style="text-align: center; margin-bottom: 20px;">
   <img src="media/screenshots/ds_1.png" alt="Main Screenshot" style="height: auto; width:95%; border: 1px solid #ddd; border-radius: 5px;">
