@@ -52,29 +52,37 @@
 
 ## Installation
 
-1. **Clone the Repository**
+1. **Set Up Virtual Environment**
+
+   ```bash
+   python3 -m venv env
+   ```
+2. **Clone the Repository**
 
    ```bash
    git clone https://github.com/aslammiya/echospace
    cd echospace
    ```
-
-2. **Set Up Virtual Environment**
-
-   ```bash
-   python3 -m venv env
-   ```
 3. **Activate Virtual Environment**
 
-   ```bash
-   source env/bin/activate
-   ```
+   **On macOS/Linux:**
+     ```bash
+     source env/bin/activate
+     ```
+   **On Windows:**
+     ```cmd
+     .\env\Scripts\activate
+     ```
 
 4. **Start Redis Server**
    ```bash
    redis-server
    ```
    **For detailed instructions on setting up Redis, refer to the [Install Redis on Linux, macOS, and Window.](https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/)**
+
+   **OR**   
+   
+   **Alternatively, you can use [Redis CLoud](https://redis.io/docs/latest/operate/rc/rc-quickstart/)**
 
 4. **Install Dependencies**
 
