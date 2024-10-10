@@ -142,8 +142,6 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -163,7 +161,8 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [REDIS_URL],
+            "hosts": ["redis://default:vTQ1ssfT0DUchkjRt6fqmc8LBUkoHe2c@redis-17951.c8.us-east-1-2.ec2.redns.redis-cloud.com:17951"],
         },
     },
 }
+
