@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,213 +8,382 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                200: '#bae6fd',
+                300: '#7dd3fc',
+                400: '#38bdf8',
+                500: '#0ea5e9',
+                600: '#0284c7',
+                700: '#0369a1',
+                800: '#075985',
+                900: '#0c4a6e',
+              },
+              secondary: {
+                50: '#fdf4ff',
+                100: '#fae8ff',
+                200: '#f5d0fe',
+                300: '#f0abfc',
+                400: '#e879f9',
+                500: '#d946ef',
+                600: '#c026d3',
+                700: '#a21caf',
+                800: '#86198f',
+                900: '#701a75',
+              },
+            },
+            animation: {
+              float: 'float 6s ease-in-out infinite',
+              floatSlow: 'floatSlow 10s ease-in-out infinite',
+              pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              typewriter: 'typewriter 2s steps(11) forwards',
+              caret: 'caret .5s step-end infinite alternate',
+              'fade-in': 'fade-in 1.2s ease-in-out forwards',
+              'fade-in-slow': 'fade-in 1.8s ease-in-out forwards',
+              'slide-up': 'slide-up 1s ease-out forwards',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              floatSlow: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              typewriter: {
+                to: { left: '100%' },
+              },
+              caret: {
+                '50%': { borderColor: 'transparent' },
+              },
+              'fade-in': {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              'slide-up': {
+                '0%': { transform: 'translateY(100px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+            },
+            backgroundImage: {
+              'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            },
+          },
+        },
+      }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-      /* Keyframe animations for floating elements */
-      @keyframes float {
-        0% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-20px);
-        }
-        100% {
-          transform: translateY(0);
-        }
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+      
+      body {
+        font-family: 'Poppins', sans-serif;
       }
-
-      @keyframes floatSlow {
-        0% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-        100% {
-          transform: translateY(0);
-        }
-      }
-
-      /* Parallax background */
+      
       .parallax {
-        background-image: url("background-stars.png");
+        background-image: url("{% static 'images/background-stars.png' %}");
         background-attachment: fixed;
         background-size: cover;
         background-position: center;
       }
+      
+      .glass {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .typewriter {
+        position: relative;
+      }
+      
+      .typewriter::after {
+        content: '|';
+        position: absolute;
+        right: 0;
+        color: #fff;
+        background: #4f46e5;
+        width: 100%;
+        animation: typewriter 3s steps(25) forwards, caret 0.5s infinite;
+      }
+      
+      .feature-card {
+        transition: all 0.3s ease;
+      }
+      
+      .feature-card:hover {
+        transform: translateY(-10px);
+      }
+      
+      .gradient-text {
+        background: linear-gradient(to right, #38bdf8, #818cf8, #e879f9);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
     </style>
   </head>
-  <body class="bg-indigo-900 text-white parallax">
-    <!-- Navbar -->
-    <header
-      class="flex justify-between items-center p-6 bg-transparent absolute top-0 w-full"
-    >
-      <div class="flex items-center space-x-3">
-        <!-- <img src="{% static 'favicon.ico'%}" alt="Logo" class="w-10 h-10" /> -->
-        <span class="text-2xl font-bold">EchoSpace</span>
-      </div>
-      <nav class="hidden md:flex space-x-6 text-gray-300">
-        <a href="#" class="hover:text-white">Download</a>
-        <a href="#" class="hover:text-white">Discover</a>
-        <a href="#" class="hover:text-white">Quests</a>
-        <a href="#" class="hover:text-white">Safety</a>
-        <a href="#" class="hover:text-white">Blog</a>
-      </nav>
-      <div>
-        <a  href="register/"><button class="bg-white text-black px-6 py-2 rounded-full">
-          Register
-        </button></a>
-        <a  href="login/"><button class="bg-white text-black px-6 py-2 rounded-full">
-          Login
-        </button></a>
-        <a  href="guest_login/"><button class="bg-white text-black px-6 py-2 rounded-full">
-            Guest Login
-          </button></a>
-      </div>
-    </header>
 
-    <!-- Hero Section -->
-    <main
-      class="flex flex-col items-center justify-center text-center h-screen mt-12 relative"
-    >
-      <h1 class="text-6xl font-extrabold">GROUP CHAT THAT'S ALL FUN & GAMES</h1>
-      <p class="text-lg text-gray-400 mt-4 max-w-md">
-        EchoSpace is great for playing games and chilling with friends, or even
-        building a worldwide community. Customise your own space to talk, play,
-        and hang out.
-      </p>
-      <div class="mt-8 flex space-x-4">
-        <button
-          class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-500"
-        >
-          Open EchoSpace in your browser
+  <body class="bg-gradient-to-b from-indigo-950 via-indigo-900 to-purple-900 text-white font-sans relative overflow-x-hidden">
+    <!-- Animated Background Elements -->
+    <div class="fixed inset-0 z-0 opacity-50">
+      <div class="absolute w-64 h-64 rounded-full bg-gradient-radial from-blue-500/20 to-transparent top-10 left-10 animate-pulse"></div>
+      <div class="absolute w-96 h-96 rounded-full bg-gradient-radial from-purple-500/20 to-transparent bottom-10 right-20 animate-pulse"></div>
+      <div class="absolute w-32 h-32 rounded-full bg-gradient-radial from-pink-500/20 to-transparent top-1/3 right-1/3 animate-pulse"></div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="flex justify-between items-center px-4 sm:px-8 py-4 fixed w-full top-0 z-50 glass">
+      <div class="flex items-center gap-3">
+        <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-full p-1 hidden sm:block">
+          <div class="bg-white rounded-full w-8 h-8 grid place-items-center">
+            <i class="fas fa-comment-dots text-purple-600"></i>
+          </div>
+        </div>
+        <span class="text-xl sm:text-3xl font-bold tracking-wide gradient-text">EchoSpace</span>
+      </div>
+      
+      <!-- Mobile menu button -->
+      <div class="sm:hidden">
+        <button id="menu-toggle" class="p-2 focus:outline-none">
+          <i class="fas fa-bars text-xl"></i>
         </button>
       </div>
+      
+      <!-- Desktop navigation -->
+      <div class="hidden sm:flex space-x-3">
+        <a href="register/">
+          <button class="px-5 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full hover:shadow-lg transition transform hover:scale-105">
+            Register
+          </button>
+        </a>
+        <a href="login/">
+          <button class="px-5 py-2 glass text-white font-semibold rounded-full hover:shadow-lg transition transform hover:scale-105 border border-white/10">
+            Login
+          </button>
+        </a>
+        <a href="guest_login/">
+          <button class="px-5 py-2 glass text-white font-semibold rounded-full hover:shadow-lg transition transform hover:scale-105 border border-white/10">
+            Guest Login
+          </button>
+        </a>
+      </div>
+    </header>
+    
+    <!-- Mobile dropdown menu -->
+    <div id="mobile-menu" class="sm:hidden fixed top-16 right-0 left-0 z-40 bg-indigo-900 shadow-lg glass hidden animate-fade-in py-2">
+      <div class="flex flex-col items-center space-y-2 p-4">
+        <a href="register/" class="w-full">
+          <button class="w-full px-5 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full">
+            Register
+          </button>
+        </a>
+        <a href="login/" class="w-full">
+          <button class="w-full px-5 py-2 glass text-white font-semibold rounded-full border border-white/10">
+            Login
+          </button>
+        </a>
+        <a href="guest_login/" class="w-full">
+          <button class="w-full px-5 py-2 glass text-white font-semibold rounded-full border border-white/10">
+            Guest Login
+          </button>
+        </a>
+      </div>
+    </div>
 
-      <!-- Floating objects with animations -->
-      <div
-        class="absolute top-0 right-10 w-30 h-32 bg-blue-500 opacity-50 rounded-full animate-float"
-      ></div>
-      <div
-        class="absolute top-40 left-20 w-20 h-20 bg-pink-400 opacity-50 rounded-full animate-floatSlow"
-      ></div>
-      <div
-        class="absolute bottom-20 left-40 w-40 h-40 bg-yellow-300 opacity-50 rounded-full animate-floatSlow"
-      ></div>
-
-      <!-- Main Visual -->
-      <div class="relative mt-16">
-        <img
-          src=""
-          alt=""
-          class="w-full max-w-2xl"
-        />
+    <!-- Hero -->
+    <main class="min-h-screen flex flex-col justify-center items-center text-center pt-24 px-6 relative z-10 overflow-hidden">
+      <!-- Animated chat bubbles -->
+      <div class="absolute w-16 h-16 bg-blue-500 rounded-full opacity-30 top-20 right-20 animate-float"></div>
+      <div class="absolute w-12 h-12 bg-pink-400 rounded-full opacity-30 top-1/2 left-10 animate-floatSlow"></div>
+      <div class="absolute w-20 h-20 bg-yellow-300 rounded-full opacity-20 bottom-20 right-1/3 animate-float"></div>
+      
+      <div class="animate-fade-in-slow">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-2">
+          GROUP CHAT THAT'S 
+          <span class="relative">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-pink-400 to-purple-500">ALL FUN</span>
+            <span class="absolute left-0 bottom-0 w-full h-1 bg-gradient-to-r from-yellow-300 via-pink-400 to-purple-500 rounded"></span>
+          </span>
+        </h1>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+          & GAMES
+        </h1>
+      </div>
+      
+      <p class="mt-8 text-base sm:text-lg max-w-xl mx-auto text-gray-300 animate-fade-in-slow">
+        Build your own virtual space to talk, chill, and vibe with your tribe. From gaming to global communities, EchoSpace makes it easy.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 mt-10 animate-fade-in-slow">
+        <a href="guest_login/" class="w-full sm:w-auto">
+          <button class="w-full px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white text-lg font-semibold shadow-lg hover:shadow-blue-500/50 transition transform hover:scale-105 flex items-center justify-center gap-2">
+            <i class="fas fa-rocket"></i>
+            Launch EchoSpace
+          </button>
+        </a>
+        <a href="#features" class="w-full sm:w-auto">
+          <button class="w-full px-8 py-3 rounded-full glass border border-white/10 text-white text-lg font-semibold transition transform hover:scale-105 flex items-center justify-center gap-2">
+            <i class="fas fa-info-circle"></i>
+            Learn More
+          </button>
+        </a>
+      </div>
+      
+      <!-- App preview -->
+      <div class="mt-16 lg:mt-20 relative max-w-2xl mx-auto animate-fade-in">
+        <div class="relative bg-gradient-to-tr from-blue-600 to-purple-700 rounded-2xl p-1 shadow-2xl">
+          <div class="glass rounded-xl overflow-hidden">
+            <img src="{% static 'images/app-preview.png' %}" alt="EchoSpace Preview" class="w-full" this.alt='EchoSpace Preview'"/>
+          </div>
+        </div>
+        
+        <!-- Decorative elements -->
+        <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-yellow-300 rounded-full opacity-40 animate-pulse"></div>
+        <div class="absolute -top-4 -left-4 w-12 h-12 bg-pink-400 rounded-full opacity-60 animate-pulse"></div>
       </div>
     </main>
 
-    <!-- Feature Cards Section -->
-    <section class="py-20 bg-indigo-800">
-      <h2 class="text-4xl font-bold text-center mb-10">Our Features</h2>
-      <div class="flex justify-center space-x-6 max-w-5xl mx-auto">
-
-        <!-- Card 1 -->
-        <div
-          class="group relative cursor-pointer overflow-hidden bg-white rounded-2xl px-6 pt-12 pb-10 shadow-2xl ring-1 ring-gray-900/5 transition-all duration-500 transform hover:scale-105 hover:shadow-3xl sm:mx-auto sm:max-w-sm sm:px-12"
-        >
-          <span
-            class="absolute top-0 left-0 z-0 h-32 w-32 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 opacity-75 transition-all duration-500 transform group-hover:scale-[20]"
-          ></span>
-          <div class="relative z-10 mx-auto max-w-md">
-            <span
-              class="grid h-24 w-24 place-items-center rounded-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-500 transform group-hover:bg-gradient-to-r group-hover:from-pink-500 group-hover:to-yellow-500"
-            >
-              <img src="" alt="" class="" />
-            </span>
-            <div
-              class="space-y-6 pt-6 text-lg leading-8 text-gray-700 transition-all duration-500 group-hover:text-white"
-            >
-              <p class="font-medium">
-                Enjoy seamless real-time communication with friends and
-                communities across the world.
-              </p>
+    <!-- Features -->
+    <section id="features" class="py-20 bg-gradient-to-b from-indigo-900 to-indigo-950 relative z-10">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col items-center mb-16">
+          <span class="px-4 py-1 rounded-full bg-indigo-700/50 text-blue-300 text-sm font-medium mb-3">Our Features</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-center gradient-text">Designed for Community</h2>
+          <p class="mt-4 text-gray-300 max-w-2xl text-center">Everything you need to build and grow your digital community in one beautiful platform</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Feature 1 -->
+          <div class="feature-card glass rounded-2xl p-6 border border-white/5 group animate-slide-up opacity-0" style="animation-delay: 0.1s">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i class="fas fa-comments text-xl text-white"></i>
             </div>
-            <div class="pt-6 text-lg font-semibold leading-7">
-              <p>
-                <span
-                  class="text-purple-500 transition-all duration-500 group-hover:text-white"
-                  >Explore Real-time Chat
-                   →</span
-                >
-              </p>
+            <h3 class="text-xl font-semibold mb-3 text-white">Real-Time Messaging</h3>
+            <p class="text-gray-300">Enjoy seamless real-time communication with friends and communities across the world.</p>
+            <div class="mt-6 text-blue-400 group-hover:text-blue-300 font-medium flex items-center">
+              <span>Explore Chat Features</span>
+              <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+            </div>
+          </div>
+          
+          <!-- Feature 2 -->
+          <div class="feature-card glass rounded-2xl p-6 border border-white/5 group animate-slide-up opacity-0" style="animation-delay: 0.3s">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i class="fas fa-users text-xl text-white"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3 text-white">Custom Rooms</h3>
+            <p class="text-gray-300">Create custom chat rooms with full control over who can join and participate.</p>
+            <div class="mt-6 text-purple-400 group-hover:text-purple-300 font-medium flex items-center">
+              <span>Customize Your Space</span>
+              <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+            </div>
+          </div>
+          
+          <!-- Feature 3 -->
+          <div class="feature-card glass rounded-2xl p-6 border border-white/5 group animate-slide-up opacity-0" style="animation-delay: 0.5s">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-pink-500 to-orange-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i class="fas fa-photo-film text-xl text-white"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3 text-white">Multimedia Sharing</h3>
+            <p class="text-gray-300">Share images, videos, and files instantly with friends and teammates.</p>
+            <div class="mt-6 text-pink-400 group-hover:text-pink-300 font-medium flex items-center">
+              <span>Share Content</span>
+              <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
             </div>
           </div>
         </div>
-
-        <!-- Card 2 -->
-        <div
-          class="group relative cursor-pointer overflow-hidden bg-white rounded-2xl px-6 pt-12 pb-10 shadow-2xl ring-1 ring-gray-900/5 transition-all duration-500 transform hover:scale-105 hover:shadow-3xl sm:mx-auto sm:max-w-sm sm:px-12"
-        >
-          <span
-            class="absolute top-0 left-0 z-0 h-32 w-32 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 opacity-75 transition-all duration-500 transform group-hover:scale-[20]"
-          ></span>
-          <div class="relative z-10 mx-auto max-w-md">
-            <span
-              class="grid h-24 w-24 place-items-center rounded-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-500 transform group-hover:bg-gradient-to-r group-hover:from-pink-500 group-hover:to-yellow-500"
-            >
-              <img src="" alt="" class="" />
-            </span>
-            <div
-              class="space-y-6 pt-6 text-lg leading-8 text-gray-700 transition-all duration-500 group-hover:text-white"
-            >
-              <p class="font-medium">
-                Create custom chat rooms with full control over who can join and
-                participate.
-              </p>
+      </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="py-20 bg-gradient-to-b from-indigo-950 to-purple-950 relative z-10">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="flex flex-col items-center mb-16">
+          <span class="px-4 py-1 rounded-full bg-purple-700/50 text-purple-300 text-sm font-medium mb-3">Testimonials</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-center gradient-text">What Our Users Say</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Testimonial 1 -->
+          <div class="glass rounded-2xl p-6 border border-white/5">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold">
+                JD
+              </div>
+              <div class="ml-4">
+                <h4 class="font-semibold">Jane Doe</h4>
+                <p class="text-gray-400 text-sm">Gaming Community Leader</p>
+              </div>
             </div>
-            <div class="pt-6 text-lg font-semibold leading-7">
-              <p>
-                <span
-                  class="text-purple-500 transition-all duration-500 group-hover:text-white"
-                  >Explore Custom Rooms 
-                  →</span
-                >
-              </p>
+            <p class="text-gray-300">"EchoSpace transformed how our gaming community stays connected. The custom rooms make it easy to organize different game sessions."</p>
+            <div class="mt-4 flex">
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+            </div>
+          </div>
+          
+          <!-- Testimonial 2 -->
+          <div class="glass rounded-2xl p-6 border border-white/5">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-blue-500 flex items-center justify-center text-white font-bold">
+                MS
+              </div>
+              <div class="ml-4">
+                <h4 class="font-semibold">Mike Smith</h4>
+                <p class="text-gray-400 text-sm">Remote Team Manager</p>
+              </div>
+            </div>
+            <p class="text-gray-300">"Our remote team relies on EchoSpace for daily communication. The multimedia sharing has made our collaboration much more efficient."</p>
+            <div class="mt-4 flex">
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star-half-alt text-yellow-400"></i>
             </div>
           </div>
         </div>
-
-        <!-- Card 3 -->
-        <div
-          class="group relative cursor-pointer overflow-hidden bg-white rounded-2xl px-6 pt-12 pb-10 shadow-2xl ring-1 ring-gray-900/5 transition-all duration-500 transform hover:scale-105 hover:shadow-3xl sm:mx-auto sm:max-w-sm sm:px-12"
-        >
-          <span
-            class="absolute top-0 left-0 z-0 h-32 w-32 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 opacity-75 transition-all duration-500 transform group-hover:scale-[20]"
-          ></span>
-          <div class="relative z-10 mx-auto max-w-md">
-            <span
-              class="grid h-24 w-24 place-items-center rounded-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-500 transform group-hover:bg-gradient-to-r group-hover:from-pink-500 group-hover:to-yellow-500"
-            >
-              <img
-                src=""
-                alt=""
-                class=""
-              />
-            </span>
-            <div
-              class="space-y-6 pt-6 text-lg leading-8 text-gray-700 transition-all duration-500 group-hover:text-white"
-            >
-              <p class="font-medium">
-                Share images, videos, and files instantly with friends and
-                teammates.
-              </p>
-            </div>
-            <div class="pt-6 text-lg font-semibold leading-7">
-              <p>
-                <span
-                  class="text-purple-500 transition-all duration-500 group-hover:text-white"
-                  >Explore Multimedia Sharing →</span
-                >
-              </p>
+      </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="py-20 bg-gradient-to-b from-purple-950 to-indigo-950 relative z-10">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="glass rounded-3xl overflow-hidden border border-white/10">
+          <div class="relative px-6 py-16 sm:px-12 md:px-16 text-center">
+            <!-- Decorative elements -->
+            <div class="absolute top-10 left-10 w-20 h-20 bg-blue-500 rounded-full opacity-20 animate-pulse"></div>
+            <div class="absolute bottom-10 right-10 w-16 h-16 bg-purple-500 rounded-full opacity-20 animate-pulse"></div>
+            
+            <h2 class="text-3xl sm:text-4xl font-bold relative z-10 mb-6">
+              Ready to join the conversation?
+            </h2>
+            <p class="text-gray-300 max-w-lg mx-auto mb-8 relative z-10">
+              Start connecting with your community today and experience communication like never before.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="register/" class="w-full sm:w-auto">
+                <button class="w-full px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white text-lg font-semibold shadow-lg hover:shadow-blue-500/50 transition transform hover:scale-105">
+                  Get Started - It's Free
+                </button>
+              </a>
+              <a href="guest_login/" class="w-full sm:w-auto">
+                <button class="w-full px-8 py-3 rounded-full glass border border-white/10 text-white text-lg font-semibold transition transform hover:scale-105">
+                  Try as Guest
+                </button>
+              </a>
             </div>
           </div>
         </div>
@@ -222,189 +391,104 @@
     </section>
 
     <!-- Footer -->
-
-    <footer class="bg-white dark:bg-gray-900">
-      <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-        <div class="md:flex md:justify-between">
-          <div class="mb-6 md:mb-0">
-            <a href="https://EchoSpace.com/" class="flex items-center">
-              <img
-                src="https://flowbite.com/docs/images/logo.svg"
-                class="h-8 me-3"
-                alt="FlowBite Logo"
-              />
-              <span
-                class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-                >EchoSpace</span
-              >
-            </a>
+    <footer class="bg-indigo-950 text-white pt-16 pb-8 relative z-10">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-full p-1">
+                <div class="bg-indigo-950 rounded-full w-8 h-8 grid place-items-center">
+                  <i class="fas fa-comment-dots text-purple-400"></i>
+                </div>
+              </div>
+              <span class="text-xl font-bold tracking-wide gradient-text">EchoSpace</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-4">
+              Connect, chat, and build communities with the most engaging group chat platform.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white transition">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white transition">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white transition">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white transition">
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
           </div>
-          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-            <div>
-              <h2
-                class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
-              >
-                Resources
-              </h2>
-              <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                  <a href="https://echospace.onrender.com/" class="hover:underline"
-                    >EchoSpace</a
-                  >
-                </li>
-                <li>
-                  <a href="https://tailwindcss.com/" class="hover:underline"
-                    >Tailwind CSS</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2
-                class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
-              >
-                Follow us
-              </h2>
-              <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                  <a
-                    href="https://github.com/themesberg/flowbite"
-                    class="hover:underline"
-                    >Github</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="https://discord.gg/4eeurUVvTy"
-                    class="hover:underline"
-                    >Discord</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2
-                class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
-              >
-                Legal
-              </h2>
-              <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                  <a href="#" class="hover:underline">Privacy Policy</a>
-                </li>
-                <li>
-                  <a href="#" class="hover:underline">Terms &amp; Conditions</a>
-                </li>
-              </ul>
-            </div>
+          
+          <div>
+            <h3 class="font-bold text-lg mb-4">Product</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="text-gray-400 hover:text-white transition">Features</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition">Security</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition">Enterprise</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition">Pricing</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 class="font-bold text-lg mb-4">Resources</h3>
+            <ul class="space-y-2">
+              <li><a href="https://echospace.onrender.com/" class="text-gray-400 hover:text-white transition">Documentation</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition">Community</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition">Support</a></li>
+              <li><a href="https://tailwindcss.com/" class="text-gray-400 hover:text-white transition">Tailwind CSS</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 class="font-bold text-lg mb-4">Company</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition">Blog</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition">Careers</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+            </ul>
           </div>
         </div>
-        <hr
-          class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
-        />
-        <div class="sm:flex sm:items-center sm:justify-between">
-          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
-            >© 2023
-            <a href="https://flowbite.com/" class="hover:underline">EchoSpace™</a
-            >. All Rights Reserved.
-          </span>
-          <div class="flex mt-4 sm:justify-center sm:mt-0">
-            <a
-              href="#"
-              class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
-            >
-              <svg
-                class="w-4 h-4"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 8 19"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span class="sr-only">Facebook page</span>
-            </a>
-            <a
-              href="#"
-              class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
-            >
-              <svg
-                class="w-4 h-4"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 21 16"
-              >
-                <path
-                  d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"
-                />
-              </svg>
-              <span class="sr-only">Discord community</span>
-            </a>
-            <a
-              href="#"
-              class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
-            >
-              <svg
-                class="w-4 h-4"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 17"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span class="sr-only">Twitter page</span>
-            </a>
-            <a
-              href="#"
-              class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
-            >
-              <svg
-                class="w-4 h-4"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span class="sr-only">GitHub account</span>
-            </a>
-            <a
-              href="#"
-              class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
-            >
-              <svg
-                class="w-4 h-4"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span class="sr-only">Dribbble account</span>
-            </a>
+        
+        <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-500 text-sm">
+            &copy; 2025 EchoSpace. All rights reserved.
+          </p>
+          <div class="flex space-x-6 mt-4 md:mt-0">
+            <a href="#" class="text-gray-500 hover:text-white text-sm transition">Privacy Policy</a>
+            <a href="#" class="text-gray-500 hover:text-white text-sm transition">Terms of Service</a>
+            <a href="#" class="text-gray-500 hover:text-white text-sm transition">Cookie Policy</a>
           </div>
         </div>
       </div>
     </footer>
+
+    <!-- Mobile menu toggle script -->
+    <script>
+      document.getElementById('menu-toggle').addEventListener('click', function() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+      });
+      
+      // Intersection Observer for animation on scroll
+      document.addEventListener('DOMContentLoaded', function() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationPlayState = 'running';
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        // Observe all elements with animation classes
+        document.querySelectorAll('.animate-slide-up').forEach(el => {
+          el.style.animationPlayState = 'paused';
+          observer.observe(el);
+        });
+      });
+    </script>
   </body>
 </html>
